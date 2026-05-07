@@ -1,0 +1,365 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\forms\\frmaddedittask.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\forms\\frmaddedittask.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\forms\\frmaddedittask.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\forms\\frmaddedittask.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\forms\\frmdashboard.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\forms\\frmdashboard.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\forms\\frmregister.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\forms\\frmregister.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\forms\\frmtaskdetails.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\forms\\frmtaskdetails.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\classes\\thememanager.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\classes\\thememanager.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\forms\\frmdashboard.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\forms\\frmdashboard.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\classes\\securityhelper.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\classes\\securityhelper.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\classes\\databasehelper.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\classes\\databasehelper.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\forms\\frmaddedittask.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\forms\\frmaddedittask.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\forms\\frmlogin.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\forms\\frmlogin.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\form1.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\form1.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\forms\\frmlogin.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\forms\\frmlogin.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\smartstudenttaskmanager.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\smartstudenttaskmanager.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\forms\\frmlogin.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\forms\\frmlogin.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\forms\\frmtaskdetails.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\forms\\frmtaskdetails.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\program.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\program.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\forms\\frmdashboard.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\forms\\frmdashboard.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\forms\\frmregister.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\forms\\frmregister.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\classes\\task.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\classes\\task.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|c:\\users\\hp\\source\\repos\\smartstudenttaskmanager\\smartstudenttaskmanager\\classes\\user.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{5C180BB9-1859-A84A-A8B7-9CFEE5AA6582}|SmartStudentTaskManager\\SmartStudentTaskManager.vbproj|solutionrelative:smartstudenttaskmanager\\classes\\user.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmAddEditTask.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmAddEditTask.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Forms\\frmAddEditTask.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmAddEditTask.vb [Design]",
+              "RelativeToolTip": "SmartStudentTaskManager\\Forms\\frmAddEditTask.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-26T15:55:31.355Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmAddEditTask.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmAddEditTask.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Forms\\frmAddEditTask.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmAddEditTask.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Forms\\frmAddEditTask.vb",
+              "ViewState": "AgIAABQBAAAAAAAAAAA9wCEBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-26T16:18:10.756Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmDashboard.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmDashboard.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Forms\\frmDashboard.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmDashboard.vb [Design]",
+              "RelativeToolTip": "SmartStudentTaskManager\\Forms\\frmDashboard.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-26T11:40:03.912Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmRegister.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmRegister.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Forms\\frmRegister.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmRegister.vb [Design]",
+              "RelativeToolTip": "SmartStudentTaskManager\\Forms\\frmRegister.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-25T11:10:26.202Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "frmTaskDetails.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmTaskDetails.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Forms\\frmTaskDetails.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmTaskDetails.vb [Design]",
+              "RelativeToolTip": "SmartStudentTaskManager\\Forms\\frmTaskDetails.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-26T16:25:50.301Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ThemeManager.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Classes\\ThemeManager.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Classes\\ThemeManager.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Classes\\ThemeManager.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Classes\\ThemeManager.vb",
+              "ViewState": "AgIAAHYBAAAAAAAAAAAowH0BAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-04T15:53:24.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "frmDashboard.Designer.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmDashboard.Designer.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Forms\\frmDashboard.Designer.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmDashboard.Designer.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Forms\\frmDashboard.Designer.vb",
+              "ViewState": "AgIAALwDAAAAAAAAAAAAAMoDAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-26T20:54:10.359Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SecurityHelper.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Classes\\SecurityHelper.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Classes\\SecurityHelper.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Classes\\SecurityHelper.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Classes\\SecurityHelper.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-25T10:36:18.426Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DatabaseHelper.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Classes\\DatabaseHelper.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Classes\\DatabaseHelper.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Classes\\DatabaseHelper.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Classes\\DatabaseHelper.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-25T10:34:32.623Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "frmAddEditTask.Designer.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmAddEditTask.Designer.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Forms\\frmAddEditTask.Designer.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmAddEditTask.Designer.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Forms\\frmAddEditTask.Designer.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-04T19:13:54.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "frmLogin.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmLogin.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Forms\\frmLogin.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmLogin.vb [Design]",
+              "RelativeToolTip": "SmartStudentTaskManager\\Forms\\frmLogin.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-04T19:10:27.341Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Form1.Designer.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Form1.Designer.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Form1.Designer.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Form1.Designer.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Form1.Designer.vb",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAUwB4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-04T18:44:24.329Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SmartStudentTaskManager",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\SmartStudentTaskManager.vbproj",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\SmartStudentTaskManager.vbproj",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\SmartStudentTaskManager.vbproj",
+              "RelativeToolTip": "SmartStudentTaskManager\\SmartStudentTaskManager.vbproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003380|",
+              "WhenOpened": "2026-05-04T16:30:47.29Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "frmLogin.Designer.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmLogin.Designer.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Forms\\frmLogin.Designer.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmLogin.Designer.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Forms\\frmLogin.Designer.vb",
+              "ViewState": "AgIAAOEAAAAAAAAAAAAcwOoAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-26T21:43:12.654Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "frmLogin.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmLogin.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Forms\\frmLogin.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmLogin.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Forms\\frmLogin.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-26T17:41:42.493Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "frmTaskDetails.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmTaskDetails.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Forms\\frmTaskDetails.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmTaskDetails.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Forms\\frmTaskDetails.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-26T16:42:48.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Program.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Program.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Program.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Program.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Program.vb",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwAkAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-26T16:54:47.071Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "frmDashboard.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmDashboard.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Forms\\frmDashboard.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmDashboard.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Forms\\frmDashboard.vb",
+              "ViewState": "AgIAALIAAAAAAAAAAAAEwL0AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-26T11:59:50.966Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "frmRegister.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmRegister.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Forms\\frmRegister.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Forms\\frmRegister.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Forms\\frmRegister.vb",
+              "ViewState": "AgIAADUAAAAAAAAAAAAkwEEAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-25T11:10:38.049Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Task.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Classes\\Task.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Classes\\Task.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Classes\\Task.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Classes\\Task.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwBYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-25T10:37:19.492Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "User.vb",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Classes\\User.vb",
+              "RelativeDocumentMoniker": "SmartStudentTaskManager\\Classes\\User.vb",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\SmartStudentTaskManager\\SmartStudentTaskManager\\Classes\\User.vb",
+              "RelativeToolTip": "SmartStudentTaskManager\\Classes\\User.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwBUAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-04-25T10:36:45.103Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
