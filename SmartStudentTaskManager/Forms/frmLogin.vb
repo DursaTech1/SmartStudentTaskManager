@@ -85,61 +85,141 @@ Public Class frmLogin
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-        ' Reset field states
         SetFieldError(txtUsername, False)
         SetFieldError(txtPassword, False)
 
-        Dim hasError As Boolean = False
-        If txtUsername.Text.Trim() = "" Then
-            SetFieldError(txtUsername, True) : txtUsername.Focus() : hasError = True
+        Dim username As String = txtUsername.Text.Trim()
+        Dim password As String = txtPassword.Text
+
+        If username = "" Then
+            SetFieldError(txtUsername, True) : txtUsername.Focus() : Return
         End If
-        If txtPassword.Text = "" Then
-            SetFieldError(txtPassword, True)
-            If Not hasError Then txtPassword.Focus()
-            hasError = True
+        If password = "" Then
+            SetFieldError(txtPassword, True) : txtPassword.Focus() : Return
         End If
-        If hasError Then Return
 
         Try
-            Dim passwordHash As String = SecurityHelper.HashPassword(txtPassword.Text)
+            ' ── Step 1: check DB connection ──────────────────────────────────
+            Dim testConn As Object = DatabaseHelper.ExecuteScalar("SELECT 1", Nothing)
+            If testConn Is Nothing Then
+                MessageBox.Show("Cannot connect to the database. Check your connection settings.",
+                                "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
 
-            Dim dt As DataTable = Nothing
+            ' ── Step 2: check user exists ─────────────────────────────────────
+            Dim userCount As Object = DatabaseHelper.ExecuteScalar(
+                "SELECT COUNT(*) FROM Users WHERE Username = @u",
+                {New MySqlParameter("@u", username)})
+            If userCount Is Nothing OrElse Convert.ToInt64(userCount) = 0 Then
+                SetFieldError(txtUsername, True)
+                MessageBox.Show("No account found with that username.", "Login Failed",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            ' ── Step 3: fetch stored hash ─────────────────────────────────────
+            Dim storedHash As String = ""
             Try
-                Dim query As String = "SELECT UserID, Username, Email, Role FROM Users WHERE Username = @Username AND PasswordHash = @PasswordHash"
-                Dim parameters As MySqlParameter() = {
-                    New MySqlParameter("@Username", txtUsername.Text.Trim()),
-                    New MySqlParameter("@PasswordHash", passwordHash)
-                }
-                dt = DatabaseHelper.GetDataTable(query, parameters)
-            Catch
-                ' Email column may not exist — try without it
-                Dim query As String = "SELECT UserID, Username, Role FROM Users WHERE Username = @Username AND PasswordHash = @PasswordHash"
-                Dim parameters As MySqlParameter() = {
-                    New MySqlParameter("@Username", txtUsername.Text.Trim()),
-                    New MySqlParameter("@PasswordHash", passwordHash)
-                }
-                dt = DatabaseHelper.GetDataTable(query, parameters)
+                Dim hashObj As Object = DatabaseHelper.ExecuteScalar(
+                    "SELECT PasswordHash FROM Users WHERE Username = @u",
+                    {New MySqlParameter("@u", username)})
+                If hashObj IsNot Nothing Then storedHash = hashObj.ToString()
+            Catch ex As Exception
+                MessageBox.Show("Error reading password hash: " & ex.Message,
+                                "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
             End Try
 
-            If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-                Dim row As DataRow = dt.Rows(0)
-                GlobalVariables.CurrentUser = New User() With {
-                    .UserID = Convert.ToInt32(row("UserID")),
-                    .Username = row("Username").ToString(),
-                    .Email = If(dt.Columns.Contains("Email") AndAlso Not IsDBNull(row("Email")), row("Email").ToString(), ""),
-                    .Role = If(dt.Columns.Contains("Role") AndAlso Not IsDBNull(row("Role")), row("Role").ToString(), "Student")
-                }
-                Dim dashboard As New frmDashboard()
-                dashboard.Show()
-                Me.Hide()
-            Else
-                SetFieldError(txtPassword, True)
-                MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If String.IsNullOrEmpty(storedHash) Then
+                MessageBox.Show("Account has no password set. Please contact support.",
+                                "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
             End If
+
+            ' ── Step 4: verify password ───────────────────────────────────────
+            If Not SecurityHelper.VerifyPassword(password, storedHash) Then
+                SetFieldError(txtPassword, True)
+                MessageBox.Show("Incorrect password.", "Login Failed",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            ' ── Step 5: upgrade legacy SHA256 hash silently ───────────────────
+            If SecurityHelper.IsLegacyHash(storedHash) Then
+                Try
+                    Dim newHash As String = SecurityHelper.HashPassword(password)
+                    DatabaseHelper.ExecuteNonQuery(
+                        "UPDATE Users SET PasswordHash=@h WHERE Username=@u",
+                        {New MySqlParameter("@h", newHash),
+                         New MySqlParameter("@u", username)})
+                Catch
+                    ' Non-fatal — login still succeeds even if upgrade fails
+                End Try
+            End If
+
+            ' ── Step 6: load full user profile ───────────────────────────────
+            Dim dtUser As DataTable = Nothing
+            Try
+                dtUser = DatabaseHelper.GetDataTable(
+                    "SELECT UserID, Username, Email, Role, FullName, StudentID, ProfilePicturePath, CreatedAt " &
+                    "FROM Users WHERE Username = @u",
+                    {New MySqlParameter("@u", username)})
+            Catch
+                dtUser = DatabaseHelper.GetDataTable(
+                    "SELECT UserID, Username, Email, Role FROM Users WHERE Username = @u",
+                    {New MySqlParameter("@u", username)})
+            End Try
+
+            If dtUser Is Nothing OrElse dtUser.Rows.Count = 0 Then
+                MessageBox.Show("Could not load user profile.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
+
+            Dim row As DataRow = dtUser.Rows(0)
+            GlobalVariables.CurrentUser = New User() With {
+                .UserID             = Convert.ToInt32(row("UserID")),
+                .Username           = row("Username").ToString(),
+                .Email              = SafeString(row, "Email"),
+                .Role               = If(SafeString(row, "Role") <> "", SafeString(row, "Role"), "Student"),
+                .FullName           = SafeString(row, "FullName"),
+                .StudentID          = SafeString(row, "StudentID"),
+                .ProfilePicturePath = SafeString(row, "ProfilePicturePath"),
+                .CreatedAt          = SafeDateTime(row, "CreatedAt")
+            }
+
+            Dim dashboard As New frmDashboard()
+            dashboard.Show()
+            Me.Hide()
+
         Catch ex As Exception
-            MessageBox.Show("Error: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Unexpected error: " & ex.Message & Environment.NewLine & ex.StackTrace,
+                            "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    ''' <summary>Returns an empty string if the column is missing or DBNull.</summary>
+    Private Shared Function SafeString(row As DataRow, columnName As String) As String
+        Try
+            If row.Table.Columns.Contains(columnName) AndAlso Not IsDBNull(row(columnName)) Then
+                Return row(columnName).ToString()
+            End If
+        Catch
+        End Try
+        Return ""
+    End Function
+
+    ''' <summary>Returns DateTime.MinValue if the column is missing or DBNull.</summary>
+    Private Shared Function SafeDateTime(row As DataRow, columnName As String) As DateTime
+        Try
+            If row.Table.Columns.Contains(columnName) AndAlso Not IsDBNull(row(columnName)) Then
+                Return Convert.ToDateTime(row(columnName))
+            End If
+        Catch
+        End Try
+        Return DateTime.MinValue
+    End Function
 
     Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
         Dim registerForm As New frmRegister()

@@ -7,13 +7,28 @@
     <Compile Update="Forms\frmAddEditTask.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\frmAnalytics.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\frmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\frmOCR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frmPomodoro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frmProfile.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\frmRegister.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frmShortcuts.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\frmTaskDetails.vb">

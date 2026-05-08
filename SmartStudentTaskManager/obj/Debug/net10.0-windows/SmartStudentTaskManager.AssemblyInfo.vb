@@ -16,7 +16,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("SmartStudentTaskManager"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca8395b1f183b4710c6f246c43911427a1c2d53d"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("SmartStudentTaskManager"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("SmartStudentTaskManager"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0"),  _

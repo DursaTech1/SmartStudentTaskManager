@@ -50,43 +50,57 @@ Public Module ThemeManager
 
     ' ── Entry point ──────────────────────────────────────────────────────────
     Public Sub ApplyTheme(ByVal frm As Form)
-        frm.BackColor = BackgroundColor
-        frm.ForeColor = TextColor
-        frm.Font = MainFont
-        frm.AutoScaleMode = AutoScaleMode.Font
-        ApplyThemeToControls(frm.Controls)
+        If frm Is Nothing Then Return
+        Try
+            frm.BackColor = BackgroundColor
+            frm.ForeColor = TextColor
+            frm.Font = MainFont
+            frm.AutoScaleMode = AutoScaleMode.Font
+            ApplyThemeToControls(frm.Controls)
+        Catch ex As Exception
+            System.Diagnostics.Debug.WriteLine("ThemeManager.ApplyTheme error: " & ex.Message)
+        End Try
     End Sub
 
     Private Sub ApplyThemeToControls(ByVal controls As Control.ControlCollection)
+        If controls Is Nothing Then Return
         For Each ctrl As Control In controls
-            Select Case True
-                Case TypeOf ctrl Is Button
-                    StyleButton(DirectCast(ctrl, Button))
-                Case TypeOf ctrl Is TextBox
-                    StyleTextBox(DirectCast(ctrl, TextBox))
-                Case TypeOf ctrl Is ComboBox
-                    StyleComboBox(DirectCast(ctrl, ComboBox))
-                Case TypeOf ctrl Is Label
-                    StyleLabel(DirectCast(ctrl, Label))
-                Case TypeOf ctrl Is DataGridView
-                    StyleDataGridView(DirectCast(ctrl, DataGridView))
-                Case TypeOf ctrl Is GroupBox
-                    StyleGroupBox(DirectCast(ctrl, GroupBox))
-                Case TypeOf ctrl Is CheckBox
-                    StyleCheckBox(DirectCast(ctrl, CheckBox))
-                Case TypeOf ctrl Is DateTimePicker
-                    ctrl.Font = MainFont
-                    ctrl.ForeColor = TextColor
-                Case TypeOf ctrl Is Panel OrElse TypeOf ctrl Is TableLayoutPanel
-                    StylePanel(ctrl)
-            End Select
-            If ctrl.Controls.Count > 0 Then ApplyThemeToControls(ctrl.Controls)
+            If ctrl Is Nothing Then Continue For
+            Try
+                Select Case True
+                    Case TypeOf ctrl Is Button
+                        StyleButton(DirectCast(ctrl, Button))
+                    Case TypeOf ctrl Is TextBox
+                        StyleTextBox(DirectCast(ctrl, TextBox))
+                    Case TypeOf ctrl Is ComboBox
+                        StyleComboBox(DirectCast(ctrl, ComboBox))
+                    Case TypeOf ctrl Is Label
+                        StyleLabel(DirectCast(ctrl, Label))
+                    Case TypeOf ctrl Is DataGridView
+                        StyleDataGridView(DirectCast(ctrl, DataGridView))
+                    Case TypeOf ctrl Is GroupBox
+                        StyleGroupBox(DirectCast(ctrl, GroupBox))
+                    Case TypeOf ctrl Is CheckBox
+                        StyleCheckBox(DirectCast(ctrl, CheckBox))
+                    Case TypeOf ctrl Is DateTimePicker
+                        ctrl.Font = MainFont
+                        ctrl.ForeColor = TextColor
+                    Case TypeOf ctrl Is Panel OrElse TypeOf ctrl Is TableLayoutPanel
+                        StylePanel(ctrl)
+                End Select
+            Catch ex As Exception
+                System.Diagnostics.Debug.WriteLine("ThemeManager: error styling " & ctrl.Name & ": " & ex.Message)
+            End Try
+            If ctrl.Controls IsNot Nothing AndAlso ctrl.Controls.Count > 0 Then
+                ApplyThemeToControls(ctrl.Controls)
+            End If
         Next
     End Sub
 
     ' ── Panel / Container ────────────────────────────────────────────────────
     Private Sub StylePanel(ByVal pnl As Control)
-        Dim n As String = If(pnl.Name, "").ToLowerInvariant()
+        If pnl Is Nothing Then Return
+        Dim n As String = If(Not String.IsNullOrEmpty(pnl.Name), pnl.Name.ToLowerInvariant(), "")
         If n.Contains("sidebar") Then
             pnl.BackColor = SidebarColor : pnl.ForeColor = Color.White
         ElseIf n.Contains("titlebar") Then
@@ -186,9 +200,9 @@ Public Module ThemeManager
         ctrl.Invalidate()
     End Sub
 
-    ' ── Button ───────────────────────────────────────────────────────────────
     Private Sub StyleButton(ByVal btn As Button)
-        Dim n As String = If(btn.Name, "").ToLowerInvariant()
+        If btn Is Nothing Then Return
+        Dim n As String = If(Not String.IsNullOrEmpty(btn.Name), btn.Name.ToLowerInvariant(), "")
         btn.FlatStyle = FlatStyle.Flat
         btn.FlatAppearance.BorderSize = 0
         btn.Cursor = Cursors.Hand
@@ -196,11 +210,12 @@ Public Module ThemeManager
         btn.UseVisualStyleBackColor = False
 
         ' ── Skip action bar buttons — styled explicitly in ApplyPerfectLayout ─
-        If btn.Parent IsNot Nothing AndAlso
-           (btn.Parent.Name = "pnlActionBar" OrElse btn.Parent.Name = "flpActionBar") Then Return
+        Dim parentName As String = If(btn.Parent IsNot Nothing AndAlso Not String.IsNullOrEmpty(btn.Parent.Name),
+                                      btn.Parent.Name.ToLowerInvariant(), "")
+        If parentName = "pnlactionbar" OrElse parentName = "flpactionbar" Then Return
 
         ' Window chrome
-        If n.Contains("close") AndAlso (btn.Parent IsNot Nothing AndAlso btn.Parent.Name.ToLowerInvariant().Contains("titlebar")) Then
+        If n.Contains("close") AndAlso parentName.Contains("titlebar") Then
             btn.BackColor = Color.Transparent : btn.ForeColor = Color.White
             btn.FlatAppearance.MouseOverBackColor = DangerColor
             btn.FlatAppearance.MouseDownBackColor = DangerHoverColor : Return
@@ -212,8 +227,7 @@ Public Module ThemeManager
         End If
 
         ' Sidebar / nav
-        If n.Contains("nav") OrElse n.Contains("logout") OrElse
-           (btn.Parent IsNot Nothing AndAlso btn.Parent.Name.ToLowerInvariant().Contains("sidebar")) Then
+        If n.Contains("nav") OrElse n.Contains("logout") OrElse parentName.Contains("sidebar") Then
             btn.BackColor = Color.Transparent : btn.ForeColor = Color.White
             btn.FlatAppearance.MouseOverBackColor = SidebarHoverColor
             btn.FlatAppearance.MouseDownBackColor = SidebarActiveColor
@@ -222,7 +236,6 @@ Public Module ThemeManager
         End If
 
         ' Danger — only explicit delete buttons and standalone exit (not inside login/register cards)
-        Dim parentName As String = If(btn.Parent IsNot Nothing, btn.Parent.Name.ToLowerInvariant(), "")
         Dim inCard As Boolean = parentName.Contains("loginbox") OrElse parentName.Contains("registerbox")
         If (n = "btndelete" OrElse n = "btndeletetask" OrElse n = "btndeletesubtask" OrElse
             (n.Contains("exit") AndAlso Not inCard)) Then
@@ -279,16 +292,24 @@ Public Module ThemeManager
         chk.ForeColor = TextColor : chk.Font = MainFont : chk.BackColor = Color.Transparent
     End Sub
 
-    ' ── Label ────────────────────────────────────────────────────────────────
     Private Sub StyleLabel(ByVal lbl As Label)
+        If lbl Is Nothing Then Return
         lbl.BackColor = Color.Transparent
         lbl.ForeColor = TextColor
         lbl.Font = MainFont
-        Dim n As String = If(lbl.Name, "").ToLowerInvariant()
-        Dim onDark As Boolean = (lbl.Parent IsNot Nothing AndAlso
-            (lbl.Parent.BackColor.GetBrightness() < 0.3F OrElse
-             lbl.Parent.Name.ToLowerInvariant().Contains("titlebar") OrElse
-             lbl.Parent.Name.ToLowerInvariant().Contains("sidebar")))
+        Dim n As String = If(Not String.IsNullOrEmpty(lbl.Name), lbl.Name.ToLowerInvariant(), "")
+        Dim parentBright As Single = 1.0F
+        Dim parentName As String = ""
+        If lbl.Parent IsNot Nothing Then
+            Try
+                parentBright = lbl.Parent.BackColor.GetBrightness()
+            Catch
+            End Try
+            parentName = If(Not String.IsNullOrEmpty(lbl.Parent.Name), lbl.Parent.Name.ToLowerInvariant(), "")
+        End If
+        Dim onDark As Boolean = parentBright < 0.3F OrElse
+                                parentName.Contains("titlebar") OrElse
+                                parentName.Contains("sidebar")
 
         Select Case True
             Case n = "lblapptitle"

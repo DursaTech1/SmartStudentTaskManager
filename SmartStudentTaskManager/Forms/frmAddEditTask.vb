@@ -91,6 +91,24 @@ Public Class frmAddEditTask
         CenterCard()
         AddHandler Me.Resize, Sub(s As Object, ev As EventArgs) CenterCard()
 
+        ' Card shadow + rounded corners
+        AddHandler pnlCard.Paint,
+            Sub(s As Object, ev As PaintEventArgs)
+                ev.Graphics.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
+                For i As Integer = 4 To 1 Step -1
+                    Dim sr As New Rectangle(i, i, pnlCard.Width - 1, pnlCard.Height - 1)
+                    Using sp As New Pen(Color.FromArgb(10 * i, 0, 0, 0), 1)
+                        ev.Graphics.DrawRectangle(sp, sr)
+                    End Using
+                Next
+                Using bg As New SolidBrush(Color.White)
+                    ev.Graphics.FillRectangle(bg, New Rectangle(0, 0, pnlCard.Width - 5, pnlCard.Height - 5))
+                End Using
+                Using bp As New Pen(ColorTranslator.FromHtml("#E5E7EB"), 1)
+                    ev.Graphics.DrawRectangle(bp, New Rectangle(0, 0, pnlCard.Width - 5, pnlCard.Height - 5))
+                End Using
+            End Sub
+
         cmbPriority.Items.Clear()
         cmbPriority.Items.AddRange({"Low", "Medium", "High"})
         cmbStatus.Items.Clear()

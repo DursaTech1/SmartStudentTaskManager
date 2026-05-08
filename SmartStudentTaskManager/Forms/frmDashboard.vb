@@ -42,7 +42,7 @@ Public Class frmDashboard
         pnlCalendarView.Visible = False
         SetActiveSidebarButton(btnNavDashboard)
 
-        lblWelcome.Text = $"Welcome, {If(GlobalVariables.CurrentUser?.Username, "User")}!"
+        lblWelcome.Text = $"Welcome, {If(GlobalVariables.CurrentUser?.DisplayName, "User")}!"
 
         SetupDataGridViews()
         LoadDashboardMetrics()
@@ -55,7 +55,7 @@ Public Class frmDashboard
             End Sub
 
         reminderService = New TaskReminderService() With {
-            .LookAhead    = TimeSpan.FromHours(24),
+            .LookAhead = TimeSpan.FromHours(24),
             .PollInterval = TimeSpan.FromMinutes(1)
         }
         AddHandler reminderService.TimesUp, AddressOf OnTimesUp
@@ -116,8 +116,8 @@ Public Class frmDashboard
         btnSearchClear.Visible = False
 
         ' ── Status filter pill buttons — indigo palette, NOT orange ──────────
-        StyleFilterPill(btnFilterAll,       active:=True)
-        StyleFilterPill(btnFilterPending,   active:=False)
+        StyleFilterPill(btnFilterAll, active:=True)
+        StyleFilterPill(btnFilterPending, active:=False)
         StyleFilterPill(btnFilterCompleted, active:=False)
 
         ' ── Advanced filter apply button — indigo, NOT orange ─────────────────
@@ -222,13 +222,13 @@ Public Class frmDashboard
     ''' during ApplyPerfectLayout and once via BeginInvoke after the message loop starts,
     ''' to guarantee ThemeManager cannot overwrite them.</summary>
     Private Sub StyleActionBarButtons()
-        PaintButton(btnAddTask,      "＋  Add Task",    ThemeManager.PrimaryColor,  Color.White,                  0)
-        PaintButton(btnEditTask,     "✏  Edit",         Color.White,                ThemeManager.TextColor,       1)
-        PaintButton(btnDeleteTask,   "🗑  Delete",       ThemeManager.DangerColor,   Color.White,                  0)
-        PaintButton(btnViewDetails,  "🔍  Details",      Color.White,                ThemeManager.TextColor,       1)
-        PaintButton(btnToggleStatus, "✔  Toggle",        ThemeManager.SuccessColor,  Color.White,                  0)
-        PaintButton(btnDuplicateTask,"⧉  Duplicate",    Color.White,                ThemeManager.TextColor,       1)
-        PaintButton(btnPrintTasks,   "🖨  Print",        Color.White,                ThemeManager.TextColor,       1)
+        PaintButton(btnAddTask, "＋  Add Task", ThemeManager.PrimaryColor, Color.White, 0)
+        PaintButton(btnEditTask, "✏  Edit", Color.White, ThemeManager.TextColor, 1)
+        PaintButton(btnDeleteTask, "🗑  Delete", ThemeManager.DangerColor, Color.White, 0)
+        PaintButton(btnViewDetails, "🔍  Details", Color.White, ThemeManager.TextColor, 1)
+        PaintButton(btnToggleStatus, "✔  Toggle", ThemeManager.SuccessColor, Color.White, 0)
+        PaintButton(btnDuplicateTask, "⧉  Duplicate", Color.White, ThemeManager.TextColor, 1)
+        PaintButton(btnPrintTasks, "🖨  Print", Color.White, ThemeManager.TextColor, 1)
         flpActionBar.Refresh()
     End Sub
 
@@ -381,30 +381,30 @@ Public Class frmDashboard
 
         _timesUpBanner = New Panel() With {
             .BackColor = ColorTranslator.FromHtml("#EF4444"),
-            .Dock      = DockStyle.Top,
-            .Height    = 44,
-            .Name      = "pnlTimesUpBanner"
+            .Dock = DockStyle.Top,
+            .Height = 44,
+            .Name = "pnlTimesUpBanner"
         }
 
         Dim lbl As New Label() With {
-            .AutoSize  = False,
-            .Dock      = DockStyle.Fill,
-            .Font      = New Font("Segoe UI Semibold", 10.5F, FontStyle.Bold),
+            .AutoSize = False,
+            .Dock = DockStyle.Fill,
+            .Font = New Font("Segoe UI Semibold", 10.5F, FontStyle.Bold),
             .ForeColor = Color.White,
-            .Padding   = New Padding(16, 0, 0, 0),
-            .Text      = message,
+            .Padding = New Padding(16, 0, 0, 0),
+            .Text = message,
             .TextAlign = ContentAlignment.MiddleLeft
         }
 
         Dim btnDismiss As New Button() With {
             .BackColor = Color.Transparent,
-            .Dock      = DockStyle.Right,
+            .Dock = DockStyle.Right,
             .FlatStyle = FlatStyle.Flat,
-            .Font      = New Font("Segoe UI", 11.0F, FontStyle.Bold),
+            .Font = New Font("Segoe UI", 11.0F, FontStyle.Bold),
             .ForeColor = Color.White,
-            .Size      = New Size(44, 44),
-            .Text      = "✕",
-            .Cursor    = Cursors.Hand
+            .Size = New Size(44, 44),
+            .Text = "✕",
+            .Cursor = Cursors.Hand
         }
         btnDismiss.FlatAppearance.BorderSize = 0
         btnDismiss.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#DC2626")
@@ -471,7 +471,8 @@ Public Class frmDashboard
     ' --- SIDEBAR NAVIGATION ---
 
     Private Sub SetActiveSidebarButton(active As Button)
-        For Each btn As Button In {btnNavDashboard, btnNavManageTasks, btnNavCalendar}
+        For Each btn As Button In {btnNavDashboard, btnNavManageTasks, btnNavCalendar,
+                                   btnNavPomodoro, btnNavAnalytics, btnNavProfile}
             btn.BackColor = Color.Transparent
             btn.ForeColor = Color.White
         Next
@@ -479,7 +480,7 @@ Public Class frmDashboard
         active.ForeColor = Color.White
     End Sub
 
-    Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
+    Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs)
         SetActiveSidebarButton(btnNavDashboard)
         LoadDashboardMetrics()
         pnlDashboardView.Visible = True
@@ -509,6 +510,32 @@ Public Class frmDashboard
         LoadCalendarTasks(DateTime.Today)
     End Sub
 
+    Private Sub btnNavPomodoro_Click(sender As Object, e As EventArgs) Handles btnNavPomodoro.Click
+        SetActiveSidebarButton(btnNavPomodoro)
+        Call New frmPomodoro().ShowDialog()
+        ' Restore active button after dialog closes
+        SetActiveSidebarButton(If(pnlDashboardView.Visible, btnNavDashboard,
+                               If(pnlManageTasksView.Visible, btnNavManageTasks, btnNavCalendar)))
+    End Sub
+
+    Private Sub btnNavAnalytics_Click(sender As Object, e As EventArgs) Handles btnNavAnalytics.Click
+        SetActiveSidebarButton(btnNavAnalytics)
+        Call New frmAnalytics().ShowDialog()
+        SetActiveSidebarButton(If(pnlDashboardView.Visible, btnNavDashboard,
+                               If(pnlManageTasksView.Visible, btnNavManageTasks, btnNavCalendar)))
+    End Sub
+
+    Private Sub btnNavProfile_Click(sender As Object, e As EventArgs) Handles btnNavProfile.Click
+        SetActiveSidebarButton(btnNavProfile)
+        Dim profileForm As New frmProfile()
+        If profileForm.ShowDialog() = DialogResult.OK Then
+            ' Profile was saved — update welcome label with new display name
+            lblWelcome.Text = $"Welcome, {If(GlobalVariables.CurrentUser?.DisplayName, "User")}!"
+        End If
+        SetActiveSidebarButton(If(pnlDashboardView.Visible, btnNavDashboard,
+                               If(pnlManageTasksView.Visible, btnNavManageTasks, btnNavCalendar)))
+    End Sub
+
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to logout?", "Confirm Logout",
                                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -521,11 +548,11 @@ Public Class frmDashboard
     End Sub
 
     Private Sub btnExportCSV_Click(sender As Object, e As EventArgs)
-        ExportToCSV
+        ExportToCSV()
     End Sub
 
     Private Sub btnExportJSON_Click(sender As Object, e As EventArgs)
-        ExportToJSON
+        ExportToJSON()
     End Sub
 
     ' --- DATA LOADING ---
@@ -544,12 +571,12 @@ Public Class frmDashboard
         ' Right-click context menu
         Dim ctx As New ContextMenuStrip()
         ctx.Font = New Font("Segoe UI", 10.0F)
-        Dim miAdd    As New ToolStripMenuItem("＋ Add Task",    Nothing, Sub(s, e) btnAddTask_Click(s, e))
-        Dim miEdit   As New ToolStripMenuItem("✏  Edit",        Nothing, Sub(s, e) btnEditTask_Click(s, e))
-        Dim miDelete As New ToolStripMenuItem("🗑  Delete",      Nothing, Sub(s, e) btnDeleteTask_Click(s, e))
-        Dim miView   As New ToolStripMenuItem("🔍  View Details",Nothing, Sub(s, e) btnViewDetails_Click(s, e))
-        Dim miToggle As New ToolStripMenuItem("✔  Toggle Status",Nothing, Sub(s, e) btnToggleStatus_Click(s, e))
-        Dim miDupe   As New ToolStripMenuItem("⧉  Duplicate",   Nothing, Sub(s, e) btnDuplicateTask_Click(s, e))
+        Dim miAdd As New ToolStripMenuItem("＋ Add Task", Nothing, Sub(s, e) btnAddTask_Click(s, e))
+        Dim miEdit As New ToolStripMenuItem("✏  Edit", Nothing, Sub(s, e) btnEditTask_Click(s, e))
+        Dim miDelete As New ToolStripMenuItem("🗑  Delete", Nothing, Sub(s, e) btnDeleteTask_Click(s, e))
+        Dim miView As New ToolStripMenuItem("🔍  View Details", Nothing, Sub(s, e) btnViewDetails_Click(s, e))
+        Dim miToggle As New ToolStripMenuItem("✔  Toggle Status", Nothing, Sub(s, e) btnToggleStatus_Click(s, e))
+        Dim miDupe As New ToolStripMenuItem("⧉  Duplicate", Nothing, Sub(s, e) btnDuplicateTask_Click(s, e))
         miDelete.ForeColor = ThemeManager.DangerColor
         ctx.Items.AddRange({miAdd, New ToolStripSeparator(), miEdit, miDelete,
                             New ToolStripSeparator(), miView, miToggle, miDupe})
@@ -582,21 +609,21 @@ Public Class frmDashboard
 
         ' ── Drag-and-drop on dgvTasks to reorder / change status ─────────────
         dgvTasks.AllowDrop = True
-        AddHandler dgvTasks.MouseDown,  AddressOf dgvTasks_DragMouseDown
-        AddHandler dgvTasks.DragEnter,  AddressOf dgvTasks_DragEnter
-        AddHandler dgvTasks.DragOver,   AddressOf dgvTasks_DragOver
-        AddHandler dgvTasks.DragDrop,   AddressOf dgvTasks_DragDrop
+        AddHandler dgvTasks.MouseDown, AddressOf dgvTasks_DragMouseDown
+        AddHandler dgvTasks.DragEnter, AddressOf dgvTasks_DragEnter
+        AddHandler dgvTasks.DragOver, AddressOf dgvTasks_DragOver
+        AddHandler dgvTasks.DragDrop, AddressOf dgvTasks_DragDrop
 
         ' Tooltips for action buttons
         Dim tt As New ToolTip() With {.InitialDelay = 400, .ShowAlways = True}
-        tt.SetToolTip(btnAddTask,      "Add new task  (Ctrl+N)")
-        tt.SetToolTip(btnEditTask,     "Edit selected task  (Ctrl+E)")
-        tt.SetToolTip(btnDeleteTask,   "Delete selected task  (Del)")
-        tt.SetToolTip(btnViewDetails,  "View task details  (Enter)")
+        tt.SetToolTip(btnAddTask, "Add new task  (Ctrl+N)")
+        tt.SetToolTip(btnEditTask, "Edit selected task  (Ctrl+E)")
+        tt.SetToolTip(btnDeleteTask, "Delete selected task  (Del)")
+        tt.SetToolTip(btnViewDetails, "View task details  (Enter)")
         tt.SetToolTip(btnToggleStatus, "Toggle Pending ↔ Completed  (Ctrl+T)")
-        tt.SetToolTip(btnDuplicateTask,"Duplicate task  (Ctrl+D)")
-        tt.SetToolTip(btnPrintTasks,   "Print task list  (Ctrl+P)")
-        tt.SetToolTip(txtSearch,       "Search across title, description, category, tag, priority")
+        tt.SetToolTip(btnDuplicateTask, "Duplicate task  (Ctrl+D)")
+        tt.SetToolTip(btnPrintTasks, "Print task list  (Ctrl+P)")
+        tt.SetToolTip(txtSearch, "Search across title, description, category, tag, priority")
 
         ' Style empty state panels
         For Each pnl As Panel In {pnlEmptyTasks, pnlEmptyRecent, pnlEmptyCalendar}
@@ -630,25 +657,25 @@ Public Class frmDashboard
             Dim op As MySqlParameter() = {New MySqlParameter("@UserID", uid),
                                            New MySqlParameter("@Today", DateTime.Today)}
 
-            Dim total     As Integer = SafeScalar(DatabaseHelper.ExecuteScalar("SELECT COUNT(*) FROM Tasks WHERE UserID=@UserID", p))
-            Dim pending   As Integer = SafeScalar(DatabaseHelper.ExecuteScalar("SELECT COUNT(*) FROM Tasks WHERE UserID=@UserID AND Status='Pending'", p))
+            Dim total As Integer = SafeScalar(DatabaseHelper.ExecuteScalar("SELECT COUNT(*) FROM Tasks WHERE UserID=@UserID", p))
+            Dim pending As Integer = SafeScalar(DatabaseHelper.ExecuteScalar("SELECT COUNT(*) FROM Tasks WHERE UserID=@UserID AND Status='Pending'", p))
             Dim completed As Integer = SafeScalar(DatabaseHelper.ExecuteScalar("SELECT COUNT(*) FROM Tasks WHERE UserID=@UserID AND Status='Completed'", p))
-            Dim overdue   As Integer = SafeScalar(DatabaseHelper.ExecuteScalar("SELECT COUNT(*) FROM Tasks WHERE UserID=@UserID AND Status='Pending' AND DueDate<@Today", op))
+            Dim overdue As Integer = SafeScalar(DatabaseHelper.ExecuteScalar("SELECT COUNT(*) FROM Tasks WHERE UserID=@UserID AND Status='Pending' AND DueDate<@Today", op))
 
-            lblCountTotal.Text     = total.ToString()
-            lblCountPending.Text   = pending.ToString()
+            lblCountTotal.Text = total.ToString()
+            lblCountPending.Text = pending.ToString()
             lblCountCompleted.Text = completed.ToString()
-            lblCountOverdue.Text   = overdue.ToString()
+            lblCountOverdue.Text = overdue.ToString()
 
             ' Progress bar
             If total > 0 Then
                 Dim pct As Integer = CInt(Math.Round(completed / CDbl(total) * 100))
-                pbCompletion.Value  = Math.Min(pct, 100)
+                pbCompletion.Value = Math.Min(pct, 100)
                 lblProgressPct.Text = $"{pct}%"
                 lblProgressPct.ForeColor = If(pct >= 80, ThemeManager.SuccessColor,
                                            If(pct >= 40, ThemeManager.WarningColor, ThemeManager.DangerColor))
             Else
-                pbCompletion.Value  = 0
+                pbCompletion.Value = 0
                 lblProgressPct.Text = "0%"
                 lblProgressPct.ForeColor = ThemeManager.MutedTextColor
             End If
@@ -679,7 +706,7 @@ Public Class frmDashboard
 
             Select Case currentFilter
                 Case "Completed" : query &= " AND Status='Completed'"
-                Case "Pending"   : query &= " AND Status='Pending'"
+                Case "Pending" : query &= " AND Status='Pending'"
             End Select
             query &= " ORDER BY DueDate ASC"
 
@@ -939,14 +966,14 @@ Public Class frmDashboard
             DatabaseHelper.ExecuteNonQuery(
                 "INSERT INTO Tasks (UserID,Title,Description,DueDate,Priority,Status,Category,IsRecurring,Notes,Tag) " &
                 "VALUES (@UserID,@Title,@Description,@DueDate,@Priority,'Pending',@Category,TRUE,@Notes,@Tag)",
-                {New MySqlParameter("@UserID",      GlobalVariables.CurrentUser.UserID),
-                 New MySqlParameter("@Title",       row("Title").ToString()),
+                {New MySqlParameter("@UserID", GlobalVariables.CurrentUser.UserID),
+                 New MySqlParameter("@Title", row("Title").ToString()),
                  New MySqlParameter("@Description", row("Description").ToString()),
-                 New MySqlParameter("@DueDate",     nextDue),
-                 New MySqlParameter("@Priority",    row("Priority").ToString()),
-                 New MySqlParameter("@Category",    If(IsDBNull(row("Category")), "General", row("Category").ToString())),
-                 New MySqlParameter("@Notes",       If(IsDBNull(row("Notes")), CObj(DBNull.Value), row("Notes"))),
-                 New MySqlParameter("@Tag",         tag)})
+                 New MySqlParameter("@DueDate", nextDue),
+                 New MySqlParameter("@Priority", row("Priority").ToString()),
+                 New MySqlParameter("@Category", If(IsDBNull(row("Category")), "General", row("Category").ToString())),
+                 New MySqlParameter("@Notes", If(IsDBNull(row("Notes")), CObj(DBNull.Value), row("Notes"))),
+                 New MySqlParameter("@Tag", tag)})
         Catch ex As Exception
             System.Diagnostics.Debug.WriteLine("Recurring task regeneration failed: " & ex.Message)
         End Try
@@ -1172,15 +1199,15 @@ Public Class frmDashboard
 
         ' ── Header ───────────────────────────────────────────────────────────
         Using hFont As New Font("Segoe UI", 13, FontStyle.Bold)
-        Using sFont As New Font("Segoe UI", 9)
-            g.DrawString("📚 Smart Task Manager — Task Report", hFont, Brushes.Black, marginX, y)
-            y += 26
-            Dim user As String = If(GlobalVariables.CurrentUser IsNot Nothing, GlobalVariables.CurrentUser.Username, "Unknown")
-            g.DrawString($"User: {user}   |   Printed: {DateTime.Now:g}", sFont, Brushes.Gray, marginX, y)
-            y += 20
-            g.DrawLine(New Pen(Color.LightGray, 1.5F), marginX, y, pageW - marginX, y)
-            y += 10
-        End Using : End Using
+            Using sFont As New Font("Segoe UI", 9)
+                g.DrawString("📚 Smart Task Manager — Task Report", hFont, Brushes.Black, marginX, y)
+                y += 26
+                Dim user As String = If(GlobalVariables.CurrentUser IsNot Nothing, GlobalVariables.CurrentUser.Username, "Unknown")
+                g.DrawString($"User: {user}   |   Printed: {DateTime.Now:g}", sFont, Brushes.Gray, marginX, y)
+                y += 20
+                g.DrawLine(New Pen(Color.LightGray, 1.5F), marginX, y, pageW - marginX, y)
+                y += 10
+            End Using : End Using
 
         ' ── Column definitions ────────────────────────────────────────────────
         Dim cols As New List(Of String) From {"Title", "DueDate", "Priority", "Status", "Category", "Tag", "DaysLeft"}
@@ -1196,63 +1223,63 @@ Public Class frmDashboard
 
         ' ── Column headers ────────────────────────────────────────────────────
         Using boldFont As New Font("Segoe UI Semibold", 9, FontStyle.Bold)
-        Using normalFont As New Font("Segoe UI", 9)
-            Dim x As Integer = marginX
-            For Each col In activeCols
-                g.DrawString(col, boldFont, Brushes.Black, x, y)
-                x += colWidths(col)
-            Next
-            y += 18
-            g.DrawLine(Pens.Black, marginX, y, pageW - marginX, y)
-            y += 6
-
-            ' ── Rows ─────────────────────────────────────────────────────────
-            If _printData Is Nothing OrElse _printData.Rows.Count = 0 Then
-                g.DrawString("No tasks to display.", normalFont, Brushes.Gray, marginX, y)
-                e.HasMorePages = False
-                Return
-            End If
-
-            Dim rowIdx As Integer = _printRowIndex
-            Dim altBrush As New SolidBrush(ColorTranslator.FromHtml("#F9FAFB"))
-            Dim footerH As Integer = 30
-
-            While rowIdx < _printData.Rows.Count
-                If y + 18 > pageH - footerH Then
-                    _printRowIndex = rowIdx
-                    e.HasMorePages = True
-                    altBrush.Dispose()
-                    GoTo DrawFooter
-                End If
-
-                Dim row As DataRow = _printData.Rows(rowIdx)
-                ' Alternating row background
-                If rowIdx Mod 2 = 1 Then
-                    g.FillRectangle(altBrush, marginX, y, pageW - marginX * 2, 18)
-                End If
-
-                x = marginX
+            Using normalFont As New Font("Segoe UI", 9)
+                Dim x As Integer = marginX
                 For Each col In activeCols
-                    Dim val As String = If(row(col) IsNot DBNull.Value, row(col).ToString(), "")
-                    Dim maxChars As Integer = CInt(colWidths(col) / 6.5)
-                    If val.Length > maxChars Then val = val.Substring(0, maxChars - 1) & "…"
-                    g.DrawString(val, normalFont, Brushes.Black, x, y)
+                    g.DrawString(col, boldFont, Brushes.Black, x, y)
                     x += colWidths(col)
                 Next
                 y += 18
-                rowIdx += 1
-            End While
+                g.DrawLine(Pens.Black, marginX, y, pageW - marginX, y)
+                y += 6
 
-            _printRowIndex = 0
-            e.HasMorePages = False
-            altBrush.Dispose()
-        End Using : End Using
+                ' ── Rows ─────────────────────────────────────────────────────────
+                If _printData Is Nothing OrElse _printData.Rows.Count = 0 Then
+                    g.DrawString("No tasks to display.", normalFont, Brushes.Gray, marginX, y)
+                    e.HasMorePages = False
+                    Return
+                End If
+
+                Dim rowIdx As Integer = _printRowIndex
+                Dim altBrush As New SolidBrush(ColorTranslator.FromHtml("#F9FAFB"))
+                Dim footerH As Integer = 30
+
+                While rowIdx < _printData.Rows.Count
+                    If y + 18 > pageH - footerH Then
+                        _printRowIndex = rowIdx
+                        e.HasMorePages = True
+                        altBrush.Dispose()
+                        GoTo DrawFooter
+                    End If
+
+                    Dim row As DataRow = _printData.Rows(rowIdx)
+                    ' Alternating row background
+                    If rowIdx Mod 2 = 1 Then
+                        g.FillRectangle(altBrush, marginX, y, pageW - marginX * 2, 18)
+                    End If
+
+                    x = marginX
+                    For Each col In activeCols
+                        Dim val As String = If(row(col) IsNot DBNull.Value, row(col).ToString(), "")
+                        Dim maxChars As Integer = CInt(colWidths(col) / 6.5)
+                        If val.Length > maxChars Then val = val.Substring(0, maxChars - 1) & "…"
+                        g.DrawString(val, normalFont, Brushes.Black, x, y)
+                        x += colWidths(col)
+                    Next
+                    y += 18
+                    rowIdx += 1
+                End While
+
+                _printRowIndex = 0
+                e.HasMorePages = False
+                altBrush.Dispose()
+            End Using : End Using
 
 DrawFooter:
         ' ── Footer ───────────────────────────────────────────────────────────
         Using fFont As New Font("Segoe UI", 8)
             Dim footerY As Integer = pageH - 25
-            g.DrawLine(New Pen(Color.LightGray, 1F), marginX, footerY - 4, pageW - marginX, footerY - 4)
+            g.DrawLine(New Pen(Color.LightGray, 1.0F), marginX, footerY - 4, pageW - marginX, footerY - 4)
             Dim pageLabel As String = $"Page {_printPageIndex}"
             Dim sz As SizeF = g.MeasureString(pageLabel, fFont)
             g.DrawString(pageLabel, fFont, Brushes.Gray, (pageW - sz.Width) / 2, footerY)
@@ -1278,15 +1305,15 @@ DrawFooter:
             Dim tag As Object = If(dt.Columns.Contains("Tag") AndAlso Not IsDBNull(row("Tag")), row("Tag"), CObj(DBNull.Value))
             DatabaseHelper.ExecuteNonQuery(
                 "INSERT INTO Tasks (UserID,Title,Description,DueDate,Priority,Status,Category,IsRecurring,Notes,Tag) VALUES (@UserID,@Title,@Description,@DueDate,@Priority,'Pending',@Category,@IsRecurring,@Notes,@Tag)",
-                {New MySqlParameter("@UserID",      GlobalVariables.CurrentUser.UserID),
-                 New MySqlParameter("@Title",       "Copy of " & row("Title").ToString()),
+                {New MySqlParameter("@UserID", GlobalVariables.CurrentUser.UserID),
+                 New MySqlParameter("@Title", "Copy of " & row("Title").ToString()),
                  New MySqlParameter("@Description", row("Description").ToString()),
-                 New MySqlParameter("@DueDate",     Convert.ToDateTime(row("DueDate")).AddDays(1)),
-                 New MySqlParameter("@Priority",    row("Priority").ToString()),
-                 New MySqlParameter("@Category",    If(IsDBNull(row("Category")), "General", row("Category").ToString())),
+                 New MySqlParameter("@DueDate", Convert.ToDateTime(row("DueDate")).AddDays(1)),
+                 New MySqlParameter("@Priority", row("Priority").ToString()),
+                 New MySqlParameter("@Category", If(IsDBNull(row("Category")), "General", row("Category").ToString())),
                  New MySqlParameter("@IsRecurring", If(IsDBNull(row("IsRecurring")), False, Convert.ToBoolean(row("IsRecurring")))),
-                 New MySqlParameter("@Notes",       If(IsDBNull(row("Notes")), CObj(DBNull.Value), row("Notes"))),
-                 New MySqlParameter("@Tag",         tag)})
+                 New MySqlParameter("@Notes", If(IsDBNull(row("Notes")), CObj(DBNull.Value), row("Notes"))),
+                 New MySqlParameter("@Tag", tag)})
             LoadTasks() : LoadDashboardMetrics()
         Catch ex As Exception
             MessageBox.Show("Error duplicating task: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1428,9 +1455,9 @@ DrawFooter:
     End Sub
 
     Private Sub ApplyDarkMode(dark As Boolean)
-        Dim bg      As Color = If(dark, ColorTranslator.FromHtml("#0F172A"), ThemeManager.BackgroundColor)
+        Dim bg As Color = If(dark, ColorTranslator.FromHtml("#0F172A"), ThemeManager.BackgroundColor)
         Dim surface As Color = If(dark, ColorTranslator.FromHtml("#1E293B"), ThemeManager.SurfaceColor)
-        Dim text    As Color = If(dark, Color.White, ThemeManager.TextColor)
+        Dim text As Color = If(dark, Color.White, ThemeManager.TextColor)
         Dim sidebar As Color = If(dark, ColorTranslator.FromHtml("#0F172A"), ThemeManager.SidebarColor)
         Dim titleBg As Color = If(dark, ColorTranslator.FromHtml("#0F172A"), ThemeManager.TitleBarColor)
 
@@ -1534,7 +1561,7 @@ DrawFooter:
             End If
 
             Dim sfd As New SaveFileDialog() With {
-                .Filter   = "JSON files (*.json)|*.json",
+                .Filter = "JSON files (*.json)|*.json",
                 .FileName = "TasksExport_" & DateTime.Now.ToString("yyyyMMdd") & ".json"
             }
             If sfd.ShowDialog() <> DialogResult.OK Then Return
@@ -1565,4 +1592,7 @@ DrawFooter:
         End Try
     End Sub
 
+    Private Sub lblAppTitle_Click(sender As Object, e As EventArgs) Handles lblAppTitle.Click
+
+    End Sub
 End Class

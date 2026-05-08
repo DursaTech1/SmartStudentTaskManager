@@ -30,7 +30,9 @@ Partial Class frmDashboard
         pnlSpacer2 = New Panel()
         btnNavManageTasks = New Button()
         pnlSpacer1 = New Panel()
-        btnNavDashboard = New Button()
+        btnNavPomodoro = New Button()
+        btnNavAnalytics = New Button()
+        btnNavProfile = New Button()
         lblAppTitle = New Label()
         pnlTitleBar = New Panel()
         btnClose = New Button()
@@ -78,11 +80,15 @@ Partial Class frmDashboard
         lblTaskCount = New Label()
         txtSearch = New TextBox()
         btnSearchClear = New Button()
-        cmbFilterStatus = New ComboBox()
-        cmbFilterPriority = New ComboBox()
-        cmbFilterCategory = New ComboBox()
+        btnFilterAll = New Button()
+        btnFilterPending = New Button()
+        btnFilterCompleted = New Button()
+        lblFilterDate = New Label()
         dtpFilterFrom = New DateTimePicker()
+        lblFilterTo = New Label()
         dtpFilterTo = New DateTimePicker()
+        lblFilterPriority = New Label()
+        cmbFilterPriority = New ComboBox()
         btnApplyAdvancedFilter = New Button()
         pnlDividerTop = New Panel()
         pnlCalendarView = New Panel()
@@ -91,6 +97,7 @@ Partial Class frmDashboard
         lblEmptyCalendar = New Label()
         calTasks = New MonthCalendar()
         lblCalendarDate = New Label()
+        btnNavDashboard = New Button()
         pnlSidebar.SuspendLayout()
         pnlTitleBar.SuspendLayout()
         pnlMainContent.SuspendLayout()
@@ -116,19 +123,21 @@ Partial Class frmDashboard
         ' pnlSidebar
         ' 
         pnlSidebar.BackColor = Color.FromArgb(CByte(30), CByte(27), CByte(75))
+        ' Bottom-docked controls added first (they anchor to the bottom)
         pnlSidebar.Controls.Add(btnLogout)
         pnlSidebar.Controls.Add(btnDarkMode)
-        pnlSidebar.Controls.Add(pnlSpacer3)
+        ' Top-docked controls: last added = topmost visible
+        pnlSidebar.Controls.Add(btnNavAnalytics)
+        pnlSidebar.Controls.Add(btnNavPomodoro)
         pnlSidebar.Controls.Add(btnNavCalendar)
-        pnlSidebar.Controls.Add(pnlSpacer2)
         pnlSidebar.Controls.Add(btnNavManageTasks)
-        pnlSidebar.Controls.Add(pnlSpacer1)
+        pnlSidebar.Controls.Add(btnNavProfile)
         pnlSidebar.Controls.Add(btnNavDashboard)
         pnlSidebar.Controls.Add(lblAppTitle)
         pnlSidebar.Dock = DockStyle.Left
         pnlSidebar.Location = New Point(0, 0)
         pnlSidebar.Name = "pnlSidebar"
-        pnlSidebar.Size = New Size(250, 750)
+        pnlSidebar.Size = New Size(275, 750)
         pnlSidebar.TabIndex = 0
         ' 
         ' btnLogout
@@ -141,7 +150,7 @@ Partial Class frmDashboard
         btnLogout.Location = New Point(0, 690)
         btnLogout.Name = "btnLogout"
         btnLogout.Padding = New Padding(20, 0, 0, 0)
-        btnLogout.Size = New Size(250, 60)
+        btnLogout.Size = New Size(275, 60)
         btnLogout.TabIndex = 4
         btnLogout.Text = "🚪 Logout"
         btnLogout.TextAlign = ContentAlignment.MiddleLeft
@@ -149,15 +158,15 @@ Partial Class frmDashboard
         ' 
         ' btnDarkMode
         ' 
-        btnDarkMode.Dock = DockStyle.Top
+        btnDarkMode.Dock = DockStyle.Bottom
         btnDarkMode.FlatAppearance.BorderSize = 0
         btnDarkMode.FlatStyle = FlatStyle.Flat
         btnDarkMode.Font = New Font("Segoe UI Semibold", 11.0F, FontStyle.Bold)
         btnDarkMode.ForeColor = Color.White
-        btnDarkMode.Location = New Point(0, 325)
+        btnDarkMode.Location = New Point(0, 477)
         btnDarkMode.Name = "btnDarkMode"
         btnDarkMode.Padding = New Padding(20, 0, 0, 0)
-        btnDarkMode.Size = New Size(250, 60)
+        btnDarkMode.Size = New Size(275, 72)
         btnDarkMode.TabIndex = 10
         btnDarkMode.Text = "🌙 Dark Mode"
         btnDarkMode.TextAlign = ContentAlignment.MiddleLeft
@@ -167,9 +176,9 @@ Partial Class frmDashboard
         ' 
         pnlSpacer3.BackColor = Color.Transparent
         pnlSpacer3.Dock = DockStyle.Top
-        pnlSpacer3.Location = New Point(0, 310)
+        pnlSpacer3.Location = New Point(0, 462)
         pnlSpacer3.Name = "pnlSpacer3"
-        pnlSpacer3.Size = New Size(250, 15)
+        pnlSpacer3.Size = New Size(275, 15)
         pnlSpacer3.TabIndex = 9
         ' 
         ' btnNavCalendar
@@ -179,10 +188,10 @@ Partial Class frmDashboard
         btnNavCalendar.FlatStyle = FlatStyle.Flat
         btnNavCalendar.Font = New Font("Segoe UI Semibold", 11.0F, FontStyle.Bold)
         btnNavCalendar.ForeColor = Color.White
-        btnNavCalendar.Location = New Point(0, 250)
+        btnNavCalendar.Location = New Point(0, 402)
         btnNavCalendar.Name = "btnNavCalendar"
         btnNavCalendar.Padding = New Padding(20, 0, 0, 0)
-        btnNavCalendar.Size = New Size(250, 60)
+        btnNavCalendar.Size = New Size(275, 60)
         btnNavCalendar.TabIndex = 8
         btnNavCalendar.Text = "📅 Calendar"
         btnNavCalendar.TextAlign = ContentAlignment.MiddleLeft
@@ -192,9 +201,9 @@ Partial Class frmDashboard
         ' 
         pnlSpacer2.BackColor = Color.Transparent
         pnlSpacer2.Dock = DockStyle.Top
-        pnlSpacer2.Location = New Point(0, 235)
+        pnlSpacer2.Location = New Point(0, 387)
         pnlSpacer2.Name = "pnlSpacer2"
-        pnlSpacer2.Size = New Size(250, 15)
+        pnlSpacer2.Size = New Size(275, 15)
         pnlSpacer2.TabIndex = 7
         ' 
         ' btnNavManageTasks
@@ -204,10 +213,10 @@ Partial Class frmDashboard
         btnNavManageTasks.FlatStyle = FlatStyle.Flat
         btnNavManageTasks.Font = New Font("Segoe UI Semibold", 11.0F, FontStyle.Bold)
         btnNavManageTasks.ForeColor = Color.White
-        btnNavManageTasks.Location = New Point(0, 175)
+        btnNavManageTasks.Location = New Point(0, 327)
         btnNavManageTasks.Name = "btnNavManageTasks"
         btnNavManageTasks.Padding = New Padding(20, 0, 0, 0)
-        btnNavManageTasks.Size = New Size(250, 60)
+        btnNavManageTasks.Size = New Size(275, 60)
         btnNavManageTasks.TabIndex = 2
         btnNavManageTasks.Text = "📋 Manage Tasks"
         btnNavManageTasks.TextAlign = ContentAlignment.MiddleLeft
@@ -217,26 +226,58 @@ Partial Class frmDashboard
         ' 
         pnlSpacer1.BackColor = Color.Transparent
         pnlSpacer1.Dock = DockStyle.Top
-        pnlSpacer1.Location = New Point(0, 160)
+        pnlSpacer1.Location = New Point(0, 312)
         pnlSpacer1.Name = "pnlSpacer1"
-        pnlSpacer1.Size = New Size(250, 15)
+        pnlSpacer1.Size = New Size(275, 15)
         pnlSpacer1.TabIndex = 6
         ' 
-        ' btnNavDashboard
+        ' btnNavPomodoro
         ' 
-        btnNavDashboard.Dock = DockStyle.Top
-        btnNavDashboard.FlatAppearance.BorderSize = 0
-        btnNavDashboard.FlatStyle = FlatStyle.Flat
-        btnNavDashboard.Font = New Font("Segoe UI Semibold", 11.0F, FontStyle.Bold)
-        btnNavDashboard.ForeColor = Color.White
-        btnNavDashboard.Location = New Point(0, 100)
-        btnNavDashboard.Name = "btnNavDashboard"
-        btnNavDashboard.Padding = New Padding(20, 0, 0, 0)
-        btnNavDashboard.Size = New Size(250, 60)
-        btnNavDashboard.TabIndex = 1
-        btnNavDashboard.Text = "🏠 Dashboard"
-        btnNavDashboard.TextAlign = ContentAlignment.MiddleLeft
-        btnNavDashboard.UseVisualStyleBackColor = True
+        btnNavPomodoro.Dock = DockStyle.Top
+        btnNavPomodoro.FlatAppearance.BorderSize = 0
+        btnNavPomodoro.FlatStyle = FlatStyle.Flat
+        btnNavPomodoro.Font = New Font("Segoe UI Semibold", 11.0F, FontStyle.Bold)
+        btnNavPomodoro.ForeColor = Color.White
+        btnNavPomodoro.Location = New Point(0, 252)
+        btnNavPomodoro.Name = "btnNavPomodoro"
+        btnNavPomodoro.Padding = New Padding(20, 0, 0, 0)
+        btnNavPomodoro.Size = New Size(275, 60)
+        btnNavPomodoro.TabIndex = 11
+        btnNavPomodoro.Text = "🍅 Pomodoro"
+        btnNavPomodoro.TextAlign = ContentAlignment.MiddleLeft
+        btnNavPomodoro.UseVisualStyleBackColor = True
+        ' 
+        ' btnNavAnalytics
+        ' 
+        btnNavAnalytics.Dock = DockStyle.Top
+        btnNavAnalytics.FlatAppearance.BorderSize = 0
+        btnNavAnalytics.FlatStyle = FlatStyle.Flat
+        btnNavAnalytics.Font = New Font("Segoe UI Semibold", 11.0F, FontStyle.Bold)
+        btnNavAnalytics.ForeColor = Color.White
+        btnNavAnalytics.Location = New Point(0, 192)
+        btnNavAnalytics.Name = "btnNavAnalytics"
+        btnNavAnalytics.Padding = New Padding(20, 0, 0, 0)
+        btnNavAnalytics.Size = New Size(275, 60)
+        btnNavAnalytics.TabIndex = 12
+        btnNavAnalytics.Text = "📊 Analytics"
+        btnNavAnalytics.TextAlign = ContentAlignment.MiddleLeft
+        btnNavAnalytics.UseVisualStyleBackColor = True
+        ' 
+        ' btnNavProfile
+        ' 
+        btnNavProfile.Dock = DockStyle.Top
+        btnNavProfile.FlatAppearance.BorderSize = 0
+        btnNavProfile.FlatStyle = FlatStyle.Flat
+        btnNavProfile.Font = New Font("Segoe UI Semibold", 11.0F, FontStyle.Bold)
+        btnNavProfile.ForeColor = Color.White
+        btnNavProfile.Location = New Point(0, 72)
+        btnNavProfile.Name = "btnNavProfile"
+        btnNavProfile.Padding = New Padding(20, 0, 0, 0)
+        btnNavProfile.Size = New Size(275, 60)
+        btnNavProfile.TabIndex = 14
+        btnNavProfile.Text = "👤 My Profile"
+        btnNavProfile.TextAlign = ContentAlignment.MiddleLeft
+        btnNavProfile.UseVisualStyleBackColor = True
         ' 
         ' lblAppTitle
         ' 
@@ -245,7 +286,7 @@ Partial Class frmDashboard
         lblAppTitle.ForeColor = Color.White
         lblAppTitle.Location = New Point(0, 0)
         lblAppTitle.Name = "lblAppTitle"
-        lblAppTitle.Size = New Size(250, 100)
+        lblAppTitle.Size = New Size(275, 72)
         lblAppTitle.TabIndex = 0
         lblAppTitle.Text = "Task Manager"
         lblAppTitle.TextAlign = ContentAlignment.MiddleCenter
@@ -258,9 +299,9 @@ Partial Class frmDashboard
         pnlTitleBar.Controls.Add(btnMinimize)
         pnlTitleBar.Controls.Add(lblWelcome)
         pnlTitleBar.Dock = DockStyle.Top
-        pnlTitleBar.Location = New Point(250, 0)
+        pnlTitleBar.Location = New Point(275, 0)
         pnlTitleBar.Name = "pnlTitleBar"
-        pnlTitleBar.Size = New Size(1030, 50)
+        pnlTitleBar.Size = New Size(1005, 50)
         pnlTitleBar.TabIndex = 1
         ' 
         ' btnClose
@@ -271,7 +312,7 @@ Partial Class frmDashboard
         btnClose.FlatStyle = FlatStyle.Flat
         btnClose.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
         btnClose.ForeColor = Color.White
-        btnClose.Location = New Point(880, 0)
+        btnClose.Location = New Point(855, 0)
         btnClose.Name = "btnClose"
         btnClose.Size = New Size(50, 50)
         btnClose.TabIndex = 2
@@ -285,7 +326,7 @@ Partial Class frmDashboard
         btnMaximize.FlatStyle = FlatStyle.Flat
         btnMaximize.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
         btnMaximize.ForeColor = Color.White
-        btnMaximize.Location = New Point(930, 0)
+        btnMaximize.Location = New Point(905, 0)
         btnMaximize.Name = "btnMaximize"
         btnMaximize.Size = New Size(50, 50)
         btnMaximize.TabIndex = 3
@@ -299,7 +340,7 @@ Partial Class frmDashboard
         btnMinimize.FlatStyle = FlatStyle.Flat
         btnMinimize.Font = New Font("Segoe UI", 14.0F, FontStyle.Bold)
         btnMinimize.ForeColor = Color.White
-        btnMinimize.Location = New Point(980, 0)
+        btnMinimize.Location = New Point(955, 0)
         btnMinimize.Name = "btnMinimize"
         btnMinimize.Size = New Size(50, 50)
         btnMinimize.TabIndex = 1
@@ -324,9 +365,9 @@ Partial Class frmDashboard
         pnlMainContent.Controls.Add(pnlManageTasksView)
         pnlMainContent.Controls.Add(pnlCalendarView)
         pnlMainContent.Dock = DockStyle.Fill
-        pnlMainContent.Location = New Point(250, 50)
+        pnlMainContent.Location = New Point(275, 50)
         pnlMainContent.Name = "pnlMainContent"
-        pnlMainContent.Size = New Size(1030, 700)
+        pnlMainContent.Size = New Size(1005, 700)
         pnlMainContent.TabIndex = 2
         ' 
         ' pnlDashboardView
@@ -339,7 +380,7 @@ Partial Class frmDashboard
         pnlDashboardView.Dock = DockStyle.Fill
         pnlDashboardView.Location = New Point(0, 0)
         pnlDashboardView.Name = "pnlDashboardView"
-        pnlDashboardView.Size = New Size(1030, 700)
+        pnlDashboardView.Size = New Size(1005, 700)
         pnlDashboardView.TabIndex = 0
         ' 
         ' dgvRecentTasks
@@ -352,7 +393,7 @@ Partial Class frmDashboard
         dgvRecentTasks.Name = "dgvRecentTasks"
         dgvRecentTasks.ReadOnly = True
         dgvRecentTasks.RowHeadersWidth = 62
-        dgvRecentTasks.Size = New Size(1030, 430)
+        dgvRecentTasks.Size = New Size(1005, 430)
         dgvRecentTasks.TabIndex = 2
         ' 
         ' pnlEmptyRecent
@@ -361,7 +402,7 @@ Partial Class frmDashboard
         pnlEmptyRecent.Controls.Add(lblEmptyRecent)
         pnlEmptyRecent.Location = New Point(30, 290)
         pnlEmptyRecent.Name = "pnlEmptyRecent"
-        pnlEmptyRecent.Size = New Size(970, 380)
+        pnlEmptyRecent.Size = New Size(945, 380)
         pnlEmptyRecent.TabIndex = 3
         pnlEmptyRecent.Visible = False
         ' 
@@ -371,7 +412,7 @@ Partial Class frmDashboard
         lblEmptyRecent.Font = New Font("Segoe UI", 13.0F)
         lblEmptyRecent.Location = New Point(0, 0)
         lblEmptyRecent.Name = "lblEmptyRecent"
-        lblEmptyRecent.Size = New Size(970, 380)
+        lblEmptyRecent.Size = New Size(945, 380)
         lblEmptyRecent.TabIndex = 0
         lblEmptyRecent.Text = "You have no upcoming tasks."
         lblEmptyRecent.TextAlign = ContentAlignment.MiddleCenter
@@ -384,7 +425,7 @@ Partial Class frmDashboard
         lblRecentActivity.Location = New Point(0, 226)
         lblRecentActivity.Name = "lblRecentActivity"
         lblRecentActivity.Padding = New Padding(16, 0, 0, 0)
-        lblRecentActivity.Size = New Size(1030, 44)
+        lblRecentActivity.Size = New Size(1005, 44)
         lblRecentActivity.TabIndex = 1
         lblRecentActivity.Text = "📋 Tasks"
         lblRecentActivity.TextAlign = ContentAlignment.MiddleLeft
@@ -399,7 +440,7 @@ Partial Class frmDashboard
         pnlProgressRow.Location = New Point(0, 190)
         pnlProgressRow.Name = "pnlProgressRow"
         pnlProgressRow.Padding = New Padding(16, 6, 16, 6)
-        pnlProgressRow.Size = New Size(1030, 36)
+        pnlProgressRow.Size = New Size(1005, 36)
         pnlProgressRow.TabIndex = 4
         ' 
         ' lblProgressPct
@@ -408,7 +449,7 @@ Partial Class frmDashboard
         lblProgressPct.AutoSize = True
         lblProgressPct.Font = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
         lblProgressPct.ForeColor = Color.FromArgb(CByte(79), CByte(70), CByte(229))
-        lblProgressPct.Location = New Point(1750, 207)
+        lblProgressPct.Location = New Point(1725, 207)
         lblProgressPct.Name = "lblProgressPct"
         lblProgressPct.Size = New Size(39, 25)
         lblProgressPct.TabIndex = 5
@@ -419,7 +460,7 @@ Partial Class frmDashboard
         pbCompletion.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         pbCompletion.Location = New Point(130, 204)
         pbCompletion.Name = "pbCompletion"
-        pbCompletion.Size = New Size(1610, 22)
+        pbCompletion.Size = New Size(1585, 22)
         pbCompletion.Style = ProgressBarStyle.Continuous
         pbCompletion.TabIndex = 4
         ' 
@@ -450,7 +491,7 @@ Partial Class frmDashboard
         tlpCards.Name = "tlpCards"
         tlpCards.RowCount = 1
         tlpCards.RowStyles.Add(New RowStyle(SizeType.Percent, 100.0F))
-        tlpCards.Size = New Size(1030, 190)
+        tlpCards.Size = New Size(1005, 190)
         tlpCards.TabIndex = 0
         ' 
         ' pnlCardOverdue
@@ -459,10 +500,10 @@ Partial Class frmDashboard
         pnlCardOverdue.Controls.Add(lblCountOverdue)
         pnlCardOverdue.Controls.Add(lblTitleOverdue)
         pnlCardOverdue.Dock = DockStyle.Fill
-        pnlCardOverdue.Location = New Point(791, 20)
+        pnlCardOverdue.Location = New Point(773, 20)
         pnlCardOverdue.Margin = New Padding(20)
         pnlCardOverdue.Name = "pnlCardOverdue"
-        pnlCardOverdue.Size = New Size(219, 150)
+        pnlCardOverdue.Size = New Size(212, 150)
         pnlCardOverdue.TabIndex = 3
         ' 
         ' lblCountOverdue
@@ -472,7 +513,7 @@ Partial Class frmDashboard
         lblCountOverdue.ForeColor = Color.FromArgb(CByte(239), CByte(68), CByte(68))
         lblCountOverdue.Location = New Point(0, 40)
         lblCountOverdue.Name = "lblCountOverdue"
-        lblCountOverdue.Size = New Size(219, 110)
+        lblCountOverdue.Size = New Size(212, 110)
         lblCountOverdue.TabIndex = 1
         lblCountOverdue.Text = "0"
         lblCountOverdue.TextAlign = ContentAlignment.MiddleCenter
@@ -484,7 +525,7 @@ Partial Class frmDashboard
         lblTitleOverdue.ForeColor = Color.FromArgb(CByte(107), CByte(114), CByte(128))
         lblTitleOverdue.Location = New Point(0, 0)
         lblTitleOverdue.Name = "lblTitleOverdue"
-        lblTitleOverdue.Size = New Size(219, 40)
+        lblTitleOverdue.Size = New Size(212, 40)
         lblTitleOverdue.TabIndex = 0
         lblTitleOverdue.Text = "⚠️ Overdue"
         lblTitleOverdue.TextAlign = ContentAlignment.MiddleCenter
@@ -495,10 +536,10 @@ Partial Class frmDashboard
         pnlCardCompleted.Controls.Add(lblCountCompleted)
         pnlCardCompleted.Controls.Add(lblTitleCompleted)
         pnlCardCompleted.Dock = DockStyle.Fill
-        pnlCardCompleted.Location = New Point(534, 20)
+        pnlCardCompleted.Location = New Point(522, 20)
         pnlCardCompleted.Margin = New Padding(20)
         pnlCardCompleted.Name = "pnlCardCompleted"
-        pnlCardCompleted.Size = New Size(217, 150)
+        pnlCardCompleted.Size = New Size(211, 150)
         pnlCardCompleted.TabIndex = 2
         ' 
         ' lblCountCompleted
@@ -508,7 +549,7 @@ Partial Class frmDashboard
         lblCountCompleted.ForeColor = Color.FromArgb(CByte(16), CByte(185), CByte(129))
         lblCountCompleted.Location = New Point(0, 40)
         lblCountCompleted.Name = "lblCountCompleted"
-        lblCountCompleted.Size = New Size(217, 110)
+        lblCountCompleted.Size = New Size(211, 110)
         lblCountCompleted.TabIndex = 1
         lblCountCompleted.Text = "0"
         lblCountCompleted.TextAlign = ContentAlignment.MiddleCenter
@@ -520,7 +561,7 @@ Partial Class frmDashboard
         lblTitleCompleted.ForeColor = Color.FromArgb(CByte(107), CByte(114), CByte(128))
         lblTitleCompleted.Location = New Point(0, 0)
         lblTitleCompleted.Name = "lblTitleCompleted"
-        lblTitleCompleted.Size = New Size(217, 40)
+        lblTitleCompleted.Size = New Size(211, 40)
         lblTitleCompleted.TabIndex = 0
         lblTitleCompleted.Text = "🎉 Completed"
         lblTitleCompleted.TextAlign = ContentAlignment.MiddleCenter
@@ -531,10 +572,10 @@ Partial Class frmDashboard
         pnlCardPending.Controls.Add(lblCountPending)
         pnlCardPending.Controls.Add(lblTitlePending)
         pnlCardPending.Dock = DockStyle.Fill
-        pnlCardPending.Location = New Point(277, 20)
+        pnlCardPending.Location = New Point(271, 20)
         pnlCardPending.Margin = New Padding(20)
         pnlCardPending.Name = "pnlCardPending"
-        pnlCardPending.Size = New Size(217, 150)
+        pnlCardPending.Size = New Size(211, 150)
         pnlCardPending.TabIndex = 1
         ' 
         ' lblCountPending
@@ -544,7 +585,7 @@ Partial Class frmDashboard
         lblCountPending.ForeColor = Color.FromArgb(CByte(245), CByte(158), CByte(11))
         lblCountPending.Location = New Point(0, 40)
         lblCountPending.Name = "lblCountPending"
-        lblCountPending.Size = New Size(217, 110)
+        lblCountPending.Size = New Size(211, 110)
         lblCountPending.TabIndex = 1
         lblCountPending.Text = "0"
         lblCountPending.TextAlign = ContentAlignment.MiddleCenter
@@ -556,7 +597,7 @@ Partial Class frmDashboard
         lblTitlePending.ForeColor = Color.FromArgb(CByte(107), CByte(114), CByte(128))
         lblTitlePending.Location = New Point(0, 0)
         lblTitlePending.Name = "lblTitlePending"
-        lblTitlePending.Size = New Size(217, 40)
+        lblTitlePending.Size = New Size(211, 40)
         lblTitlePending.TabIndex = 0
         lblTitlePending.Text = "⏳ Pending"
         lblTitlePending.TextAlign = ContentAlignment.MiddleCenter
@@ -570,7 +611,7 @@ Partial Class frmDashboard
         pnlCardTotal.Location = New Point(20, 20)
         pnlCardTotal.Margin = New Padding(20)
         pnlCardTotal.Name = "pnlCardTotal"
-        pnlCardTotal.Size = New Size(217, 150)
+        pnlCardTotal.Size = New Size(211, 150)
         pnlCardTotal.TabIndex = 0
         ' 
         ' lblCountTotal
@@ -580,7 +621,7 @@ Partial Class frmDashboard
         lblCountTotal.ForeColor = Color.FromArgb(CByte(79), CByte(70), CByte(229))
         lblCountTotal.Location = New Point(0, 40)
         lblCountTotal.Name = "lblCountTotal"
-        lblCountTotal.Size = New Size(217, 110)
+        lblCountTotal.Size = New Size(211, 110)
         lblCountTotal.TabIndex = 1
         lblCountTotal.Text = "0"
         lblCountTotal.TextAlign = ContentAlignment.MiddleCenter
@@ -592,7 +633,7 @@ Partial Class frmDashboard
         lblTitleTotal.ForeColor = Color.FromArgb(CByte(107), CByte(114), CByte(128))
         lblTitleTotal.Location = New Point(0, 0)
         lblTitleTotal.Name = "lblTitleTotal"
-        lblTitleTotal.Size = New Size(217, 40)
+        lblTitleTotal.Size = New Size(211, 40)
         lblTitleTotal.TabIndex = 0
         lblTitleTotal.Text = "📝 Total Tasks"
         lblTitleTotal.TextAlign = ContentAlignment.MiddleCenter
@@ -608,7 +649,7 @@ Partial Class frmDashboard
         pnlManageTasksView.Dock = DockStyle.Fill
         pnlManageTasksView.Location = New Point(0, 0)
         pnlManageTasksView.Name = "pnlManageTasksView"
-        pnlManageTasksView.Size = New Size(1030, 700)
+        pnlManageTasksView.Size = New Size(1005, 700)
         pnlManageTasksView.TabIndex = 1
         pnlManageTasksView.Visible = False
         ' 
@@ -626,7 +667,7 @@ Partial Class frmDashboard
         flpActionBar.Location = New Point(0, 642)
         flpActionBar.Name = "flpActionBar"
         flpActionBar.Padding = New Padding(12, 8, 12, 8)
-        flpActionBar.Size = New Size(1030, 58)
+        flpActionBar.Size = New Size(1005, 58)
         flpActionBar.TabIndex = 0
         flpActionBar.WrapContents = False
         ' 
@@ -693,7 +734,7 @@ Partial Class frmDashboard
         dgvTasks.Location = New Point(0, 162)
         dgvTasks.Name = "dgvTasks"
         dgvTasks.RowHeadersWidth = 62
-        dgvTasks.Size = New Size(1030, 538)
+        dgvTasks.Size = New Size(1005, 538)
         dgvTasks.TabIndex = 8
         ' 
         ' pnlEmptyTasks
@@ -702,7 +743,7 @@ Partial Class frmDashboard
         pnlEmptyTasks.Dock = DockStyle.Fill
         pnlEmptyTasks.Location = New Point(0, 162)
         pnlEmptyTasks.Name = "pnlEmptyTasks"
-        pnlEmptyTasks.Size = New Size(1030, 538)
+        pnlEmptyTasks.Size = New Size(1005, 538)
         pnlEmptyTasks.TabIndex = 9
         pnlEmptyTasks.Visible = False
         ' 
@@ -712,7 +753,7 @@ Partial Class frmDashboard
         lblEmptyTasks.Font = New Font("Segoe UI", 13.0F)
         lblEmptyTasks.Location = New Point(0, 0)
         lblEmptyTasks.Name = "lblEmptyTasks"
-        lblEmptyTasks.Size = New Size(1030, 538)
+        lblEmptyTasks.Size = New Size(1005, 538)
         lblEmptyTasks.TabIndex = 0
         lblEmptyTasks.Text = "No tasks yet — click ＋ Add Task to get started."
         lblEmptyTasks.TextAlign = ContentAlignment.MiddleCenter
@@ -723,7 +764,7 @@ Partial Class frmDashboard
         pnlDivider.Dock = DockStyle.Top
         pnlDivider.Location = New Point(0, 161)
         pnlDivider.Name = "pnlDivider"
-        pnlDivider.Size = New Size(1030, 1)
+        pnlDivider.Size = New Size(1005, 1)
         pnlDivider.TabIndex = 10
         ' 
         ' pnlToolbar
@@ -747,7 +788,7 @@ Partial Class frmDashboard
         pnlToolbar.Location = New Point(0, 1)
         pnlToolbar.Name = "pnlToolbar"
         pnlToolbar.Padding = New Padding(16, 8, 16, 8)
-        pnlToolbar.Size = New Size(1030, 160)
+        pnlToolbar.Size = New Size(1005, 160)
         pnlToolbar.TabIndex = 11
         ' 
         ' lblManageTitle
@@ -767,7 +808,7 @@ Partial Class frmDashboard
         lblTaskCount.AutoSize = True
         lblTaskCount.Font = New Font("Segoe UI Semibold", 10.0F, FontStyle.Bold)
         lblTaskCount.ForeColor = Color.FromArgb(CByte(79), CByte(70), CByte(229))
-        lblTaskCount.Location = New Point(1650, 12)
+        lblTaskCount.Location = New Point(1625, 12)
         lblTaskCount.Name = "lblTaskCount"
         lblTaskCount.Size = New Size(129, 28)
         lblTaskCount.TabIndex = 1
@@ -909,7 +950,7 @@ Partial Class frmDashboard
         pnlDividerTop.Dock = DockStyle.Top
         pnlDividerTop.Location = New Point(0, 0)
         pnlDividerTop.Name = "pnlDividerTop"
-        pnlDividerTop.Size = New Size(1030, 1)
+        pnlDividerTop.Size = New Size(1005, 1)
         pnlDividerTop.TabIndex = 12
         ' 
         ' pnlCalendarView
@@ -921,7 +962,7 @@ Partial Class frmDashboard
         pnlCalendarView.Dock = DockStyle.Fill
         pnlCalendarView.Location = New Point(0, 0)
         pnlCalendarView.Name = "pnlCalendarView"
-        pnlCalendarView.Size = New Size(1030, 700)
+        pnlCalendarView.Size = New Size(1005, 700)
         pnlCalendarView.TabIndex = 2
         pnlCalendarView.Visible = False
         ' 
@@ -935,7 +976,7 @@ Partial Class frmDashboard
         dgvCalendarTasks.Name = "dgvCalendarTasks"
         dgvCalendarTasks.ReadOnly = True
         dgvCalendarTasks.RowHeadersWidth = 62
-        dgvCalendarTasks.Size = New Size(620, 590)
+        dgvCalendarTasks.Size = New Size(595, 590)
         dgvCalendarTasks.TabIndex = 2
         ' 
         ' pnlEmptyCalendar
@@ -944,7 +985,7 @@ Partial Class frmDashboard
         pnlEmptyCalendar.Controls.Add(lblEmptyCalendar)
         pnlEmptyCalendar.Location = New Point(380, 80)
         pnlEmptyCalendar.Name = "pnlEmptyCalendar"
-        pnlEmptyCalendar.Size = New Size(620, 590)
+        pnlEmptyCalendar.Size = New Size(595, 590)
         pnlEmptyCalendar.TabIndex = 3
         pnlEmptyCalendar.Visible = False
         ' 
@@ -954,7 +995,7 @@ Partial Class frmDashboard
         lblEmptyCalendar.Font = New Font("Segoe UI", 13.0F)
         lblEmptyCalendar.Location = New Point(0, 0)
         lblEmptyCalendar.Name = "lblEmptyCalendar"
-        lblEmptyCalendar.Size = New Size(620, 590)
+        lblEmptyCalendar.Size = New Size(595, 590)
         lblEmptyCalendar.TabIndex = 0
         lblEmptyCalendar.Text = "No tasks due on this day."
         lblEmptyCalendar.TextAlign = ContentAlignment.MiddleCenter
@@ -976,6 +1017,22 @@ Partial Class frmDashboard
         lblCalendarDate.Size = New Size(196, 38)
         lblCalendarDate.TabIndex = 1
         lblCalendarDate.Text = "Tasks for Date"
+        ' 
+        ' btnNavDashboard
+        ' 
+        btnNavDashboard.Dock = DockStyle.Top
+        btnNavDashboard.FlatAppearance.BorderSize = 0
+        btnNavDashboard.FlatStyle = FlatStyle.Flat
+        btnNavDashboard.Font = New Font("Segoe UI Semibold", 11.0F, FontStyle.Bold)
+        btnNavDashboard.ForeColor = Color.White
+        btnNavDashboard.Location = New Point(0, 549)
+        btnNavDashboard.Name = "btnNavDashboard"
+        btnNavDashboard.Padding = New Padding(20, 0, 0, 0)
+        btnNavDashboard.Size = New Size(275, 60)
+        btnNavDashboard.TabIndex = 16
+        btnNavDashboard.Text = "🏠 Dashboard"
+        btnNavDashboard.TextAlign = ContentAlignment.MiddleLeft
+        btnNavDashboard.UseVisualStyleBackColor = True
         ' 
         ' frmDashboard
         ' 
@@ -1025,7 +1082,6 @@ Partial Class frmDashboard
     Friend WithEvents pnlSpacer2 As Panel
     Friend WithEvents btnNavManageTasks As Button
     Friend WithEvents pnlSpacer1 As Panel
-    Friend WithEvents btnNavDashboard As Button
     Friend WithEvents pnlTitleBar As Panel
     Friend WithEvents btnClose As Button
     Friend WithEvents btnMaximize As Button
@@ -1091,4 +1147,8 @@ Partial Class frmDashboard
     Friend WithEvents pbCompletion As ProgressBar
     Friend WithEvents lblProgressPct As Label
     Friend WithEvents pnlProgressRow As Panel
+    Friend WithEvents btnNavPomodoro As Button
+    Friend WithEvents btnNavAnalytics As Button
+    Friend WithEvents btnNavProfile As Button
+    Friend WithEvents btnNavDashboard As Button
 End Class

@@ -77,10 +77,14 @@ Public Class DatabaseHelper
                     End Using
                 Next
 
-                ' Ensure Users table has Email and Role columns
+                ' Ensure Users table has all required profile columns
                 Dim userChecks As New Dictionary(Of String, String) From {
-                    {"Email", "ALTER TABLE Users ADD Email VARCHAR(254) NULL"},
-                    {"Role",  "ALTER TABLE Users ADD Role VARCHAR(50) DEFAULT 'Student'"}
+                    {"Email",              "ALTER TABLE Users ADD Email VARCHAR(254) NULL"},
+                    {"Role",               "ALTER TABLE Users ADD Role VARCHAR(50) DEFAULT 'Student'"},
+                    {"FullName",           "ALTER TABLE Users ADD FullName VARCHAR(150) NULL"},
+                    {"StudentID",          "ALTER TABLE Users ADD StudentID VARCHAR(50) NULL"},
+                    {"ProfilePicturePath", "ALTER TABLE Users ADD ProfilePicturePath VARCHAR(500) NULL"},
+                    {"CreatedAt",          "ALTER TABLE Users ADD CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP"}
                 }
                 For Each kv In userChecks
                     Dim q As String = "SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='Users' AND COLUMN_NAME=@col"
@@ -93,6 +97,19 @@ Public Class DatabaseHelper
                         End If
                     End Using
                 Next
+
+                ' Widen PasswordHash column to hold PBKDF2 hashes (up to 255 chars)
+                Using cmd As New MySqlCommand(
+                    "SELECT CHARACTER_MAXIMUM_LENGTH FROM information_schema.COLUMNS " &
+                    "WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='Users' AND COLUMN_NAME='PasswordHash'", conn)
+                    Dim colLen As Object = cmd.ExecuteScalar()
+                    If colLen IsNot Nothing AndAlso Convert.ToInt32(colLen) < 255 Then
+                        Using alter As New MySqlCommand(
+                            "ALTER TABLE Users MODIFY COLUMN PasswordHash VARCHAR(255) NOT NULL", conn)
+                            alter.ExecuteNonQuery()
+                        End Using
+                    End If
+                End Using
 
                 ' Subtasks table
                 Using cmd As New MySqlCommand(

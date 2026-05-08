@@ -49,7 +49,6 @@ Partial Class frmAddEditTask
         lblFormTitle = New Label()
         pnlCenter = New Panel()
         pnlCard = New Panel()
-        Button1 = New Button()
         Label1 = New Label()
         txtTitle = New TextBox()
         Label2 = New Label()
@@ -126,7 +125,6 @@ Partial Class frmAddEditTask
         ' pnlCard
         ' 
         pnlCard.BackColor = Color.White
-        pnlCard.Controls.Add(Button1)
         pnlCard.Controls.Add(Label1)
         pnlCard.Controls.Add(txtTitle)
         pnlCard.Controls.Add(Label2)
@@ -150,17 +148,7 @@ Partial Class frmAddEditTask
         pnlCard.Location = New Point(0, 0)
         pnlCard.Name = "pnlCard"
         pnlCard.Padding = New Padding(40, 24, 40, 24)
-        pnlCard.Size = New Size(680, 720)
-        pnlCard.TabIndex = 0
-        ' 
-        ' Button1
-        ' 
-        Button1.Location = New Point(599, 365)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(112, 34)
-        Button1.TabIndex = 20
-        Button1.Text = "Button1"
-        Button1.UseVisualStyleBackColor = True
+        pnlCard.Size = New Size(700, 660)
         ' 
         ' Label1
         ' 

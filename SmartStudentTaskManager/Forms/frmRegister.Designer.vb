@@ -17,23 +17,35 @@ Partial Class frmRegister
 
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        pnlTitleBar       = New Panel()
-        btnClose          = New Button()
-        lblTitle          = New Label()
-        pnlCenter         = New Panel()
-        pnlRegisterBox    = New Panel()
-        Label1            = New Label()
-        lblSubtitle       = New Label()
-        Label2            = New Label()
-        txtUsername       = New TextBox()
-        Label3            = New Label()
-        txtEmail          = New TextBox()
-        Label4            = New Label()
-        txtPassword       = New TextBox()
-        Label5            = New Label()
+        pnlTitleBar        = New Panel()
+        btnClose           = New Button()
+        lblTitle           = New Label()
+        pnlCenter          = New Panel()
+        pnlRegisterBox     = New Panel()
+        lblHeading         = New Label()
+        lblSubtitle        = New Label()
+        ' Section: Personal Info
+        lblSectionPersonal = New Label()
+        lblFullNameLbl     = New Label()
+        txtFullName        = New TextBox()
+        lblStudentIDLbl    = New Label()
+        txtStudentID       = New TextBox()
+        ' Section: Account Info
+        lblSectionAccount  = New Label()
+        lblUsernameLbl     = New Label()
+        txtUsername        = New TextBox()
+        lblEmailLbl        = New Label()
+        txtEmail           = New TextBox()
+        ' Section: Password
+        lblSectionPassword = New Label()
+        lblPasswordLbl     = New Label()
+        txtPassword        = New TextBox()
+        lblConfirmLbl      = New Label()
         txtConfirmPassword = New TextBox()
-        btnRegister       = New Button()
-        btnCancel         = New Button()
+        ' Buttons
+        btnRegister        = New Button()
+        btnCancel          = New Button()
+
         pnlTitleBar.SuspendLayout()
         pnlCenter.SuspendLayout()
         pnlRegisterBox.SuspendLayout()
@@ -74,120 +86,187 @@ Partial Class frmRegister
         pnlCenter.Name     = "pnlCenter"
         pnlCenter.TabIndex = 1
 
-        ' ── Register Card (460×530) ───────────────────────────────────────────
-        ' Row pitch: label(18) + gap(4) + input(36) + gap(18) = 76px per row
-        ' Rows: heading(40) + subtitle(22) + gap(16) = 78 before row1
-        ' Row1 y=78, Row2 y=154, Row3 y=230, Row4 y=306, btn y=382, back y=440
+        ' ── Register Card (500×680) ───────────────────────────────────────────
+        ' Layout: heading(y=20) + subtitle(y=60) + 3 sections + buttons
+        ' Each section: section label + 1-2 rows of label+input (row pitch = 72px)
         pnlRegisterBox.BackColor = Color.White
-        pnlRegisterBox.Controls.Add(Label1)
+        pnlRegisterBox.Controls.Add(lblHeading)
         pnlRegisterBox.Controls.Add(lblSubtitle)
-        pnlRegisterBox.Controls.Add(Label2)
+        pnlRegisterBox.Controls.Add(lblSectionPersonal)
+        pnlRegisterBox.Controls.Add(lblFullNameLbl)
+        pnlRegisterBox.Controls.Add(txtFullName)
+        pnlRegisterBox.Controls.Add(lblStudentIDLbl)
+        pnlRegisterBox.Controls.Add(txtStudentID)
+        pnlRegisterBox.Controls.Add(lblSectionAccount)
+        pnlRegisterBox.Controls.Add(lblUsernameLbl)
         pnlRegisterBox.Controls.Add(txtUsername)
-        pnlRegisterBox.Controls.Add(Label3)
+        pnlRegisterBox.Controls.Add(lblEmailLbl)
         pnlRegisterBox.Controls.Add(txtEmail)
-        pnlRegisterBox.Controls.Add(Label4)
+        pnlRegisterBox.Controls.Add(lblSectionPassword)
+        pnlRegisterBox.Controls.Add(lblPasswordLbl)
         pnlRegisterBox.Controls.Add(txtPassword)
-        pnlRegisterBox.Controls.Add(Label5)
+        pnlRegisterBox.Controls.Add(lblConfirmLbl)
         pnlRegisterBox.Controls.Add(txtConfirmPassword)
         pnlRegisterBox.Controls.Add(btnRegister)
         pnlRegisterBox.Controls.Add(btnCancel)
         pnlRegisterBox.Name     = "pnlRegisterBox"
-        pnlRegisterBox.Size     = New Size(460, 490)
+        pnlRegisterBox.Size     = New Size(500, 680)
         pnlRegisterBox.TabIndex = 0
 
-        ' Heading  (y=20)
-        Label1.AutoSize   = False
-        Label1.Font       = New Font("Segoe UI", 17.0F, FontStyle.Bold)
-        Label1.ForeColor  = ColorTranslator.FromHtml("#1E1B4B")
-        Label1.Location   = New Point(0, 20)
-        Label1.Name       = "Label1"
-        Label1.Size       = New Size(460, 38)
-        Label1.TabIndex   = 0
-        Label1.Text       = "Create New Account"
-        Label1.TextAlign  = ContentAlignment.MiddleCenter
+        ' ── Heading (y=20) ────────────────────────────────────────────────────
+        lblHeading.AutoSize   = False
+        lblHeading.Font       = New Font("Segoe UI", 17.0F, FontStyle.Bold)
+        lblHeading.ForeColor  = ColorTranslator.FromHtml("#1E1B4B")
+        lblHeading.Location   = New Point(0, 20)
+        lblHeading.Name       = "lblHeading"
+        lblHeading.Size       = New Size(500, 38)
+        lblHeading.TabIndex   = 0
+        lblHeading.Text       = "Create New Account"
+        lblHeading.TextAlign  = ContentAlignment.MiddleCenter
 
-        ' Subtitle  (y=60)
+        ' ── Subtitle (y=60) ───────────────────────────────────────────────────
         lblSubtitle.AutoSize   = False
         lblSubtitle.Font       = New Font("Segoe UI", 10.0F)
         lblSubtitle.ForeColor  = ColorTranslator.FromHtml("#6B7280")
         lblSubtitle.Location   = New Point(0, 60)
         lblSubtitle.Name       = "lblSubtitle"
-        lblSubtitle.Size       = New Size(460, 22)
-        lblSubtitle.TabIndex   = 11
-        lblSubtitle.Text       = "Fill in the details below to get started"
+        lblSubtitle.Size       = New Size(500, 22)
+        lblSubtitle.TabIndex   = 1
+        lblSubtitle.Text       = "Fill in your details to get started"
         lblSubtitle.TextAlign  = ContentAlignment.MiddleCenter
 
-        ' ── Row 1: Username  (label y=96, input y=116) ───────────────────────
-        Label2.AutoSize  = True
-        Label2.Font      = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
-        Label2.ForeColor = ColorTranslator.FromHtml("#374151")
-        Label2.Location  = New Point(50, 96)
-        Label2.Name      = "Label2"
-        Label2.TabIndex  = 1
-        Label2.Text      = "Username"
+        ' ── Section: Personal Information (y=96) ─────────────────────────────
+        lblSectionPersonal.AutoSize  = True
+        lblSectionPersonal.Font      = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
+        lblSectionPersonal.ForeColor = ColorTranslator.FromHtml("#4F46E5")
+        lblSectionPersonal.Location  = New Point(50, 96)
+        lblSectionPersonal.Name      = "lblSectionPersonal"
+        lblSectionPersonal.TabIndex  = 2
+        lblSectionPersonal.Text      = "PERSONAL INFORMATION"
 
-        txtUsername.BorderStyle    = BorderStyle.FixedSingle
-        txtUsername.Font           = New Font("Segoe UI", 11.0F)
-        txtUsername.Location       = New Point(50, 116)
-        txtUsername.Name           = "txtUsername"
-        txtUsername.PlaceholderText = "Choose a username"
-        txtUsername.Size           = New Size(360, 36)
-        txtUsername.TabIndex       = 2
+        ' Full Name (label y=118, input y=138)
+        lblFullNameLbl.AutoSize  = True
+        lblFullNameLbl.Font      = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
+        lblFullNameLbl.ForeColor = ColorTranslator.FromHtml("#374151")
+        lblFullNameLbl.Location  = New Point(50, 118)
+        lblFullNameLbl.Name      = "lblFullNameLbl"
+        lblFullNameLbl.TabIndex  = 3
+        lblFullNameLbl.Text      = "Full Name *"
 
-        ' ── Row 2: Email  (label y=168, input y=188) ─────────────────────────
-        Label3.AutoSize  = True
-        Label3.Font      = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
-        Label3.ForeColor = ColorTranslator.FromHtml("#374151")
-        Label3.Location  = New Point(50, 168)
-        Label3.Name      = "Label3"
-        Label3.TabIndex  = 3
-        Label3.Text      = "Email Address"
+        txtFullName.BorderStyle     = BorderStyle.FixedSingle
+        txtFullName.Font            = New Font("Segoe UI", 11.0F)
+        txtFullName.Location        = New Point(50, 138)
+        txtFullName.Name            = "txtFullName"
+        txtFullName.PlaceholderText = "e.g. Ahmad Murad"
+        txtFullName.Size            = New Size(400, 36)
+        txtFullName.TabIndex        = 4
 
-        txtEmail.BorderStyle    = BorderStyle.FixedSingle
-        txtEmail.Font           = New Font("Segoe UI", 11.0F)
-        txtEmail.Location       = New Point(50, 188)
-        txtEmail.Name           = "txtEmail"
+        ' Student ID (label y=190, input y=210) — optional
+        lblStudentIDLbl.AutoSize  = True
+        lblStudentIDLbl.Font      = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
+        lblStudentIDLbl.ForeColor = ColorTranslator.FromHtml("#374151")
+        lblStudentIDLbl.Location  = New Point(50, 190)
+        lblStudentIDLbl.Name      = "lblStudentIDLbl"
+        lblStudentIDLbl.TabIndex  = 5
+        lblStudentIDLbl.Text      = "Student ID  (optional)"
+
+        txtStudentID.BorderStyle     = BorderStyle.FixedSingle
+        txtStudentID.Font            = New Font("Segoe UI", 11.0F)
+        txtStudentID.Location        = New Point(50, 210)
+        txtStudentID.Name            = "txtStudentID"
+        txtStudentID.PlaceholderText = "e.g. STU-2024-001"
+        txtStudentID.Size            = New Size(400, 36)
+        txtStudentID.TabIndex        = 6
+
+        ' ── Section: Account Information (y=262) ─────────────────────────────
+        lblSectionAccount.AutoSize  = True
+        lblSectionAccount.Font      = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
+        lblSectionAccount.ForeColor = ColorTranslator.FromHtml("#4F46E5")
+        lblSectionAccount.Location  = New Point(50, 262)
+        lblSectionAccount.Name      = "lblSectionAccount"
+        lblSectionAccount.TabIndex  = 7
+        lblSectionAccount.Text      = "ACCOUNT INFORMATION"
+
+        ' Username (label y=284, input y=304)
+        lblUsernameLbl.AutoSize  = True
+        lblUsernameLbl.Font      = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
+        lblUsernameLbl.ForeColor = ColorTranslator.FromHtml("#374151")
+        lblUsernameLbl.Location  = New Point(50, 284)
+        lblUsernameLbl.Name      = "lblUsernameLbl"
+        lblUsernameLbl.TabIndex  = 8
+        lblUsernameLbl.Text      = "Username *"
+
+        txtUsername.BorderStyle     = BorderStyle.FixedSingle
+        txtUsername.Font            = New Font("Segoe UI", 11.0F)
+        txtUsername.Location        = New Point(50, 304)
+        txtUsername.Name            = "txtUsername"
+        txtUsername.PlaceholderText = "Choose a username (min. 3 chars)"
+        txtUsername.Size            = New Size(400, 36)
+        txtUsername.TabIndex        = 9
+
+        ' Email (label y=356, input y=376)
+        lblEmailLbl.AutoSize  = True
+        lblEmailLbl.Font      = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
+        lblEmailLbl.ForeColor = ColorTranslator.FromHtml("#374151")
+        lblEmailLbl.Location  = New Point(50, 356)
+        lblEmailLbl.Name      = "lblEmailLbl"
+        lblEmailLbl.TabIndex  = 10
+        lblEmailLbl.Text      = "Email Address *"
+
+        txtEmail.BorderStyle     = BorderStyle.FixedSingle
+        txtEmail.Font            = New Font("Segoe UI", 11.0F)
+        txtEmail.Location        = New Point(50, 376)
+        txtEmail.Name            = "txtEmail"
         txtEmail.PlaceholderText = "your@email.com"
-        txtEmail.Size           = New Size(360, 36)
-        txtEmail.TabIndex       = 4
+        txtEmail.Size            = New Size(400, 36)
+        txtEmail.TabIndex        = 11
 
-        ' ── Row 3: Password  (label y=240, input y=260) ──────────────────────
-        Label4.AutoSize  = True
-        Label4.Font      = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
-        Label4.ForeColor = ColorTranslator.FromHtml("#374151")
-        Label4.Location  = New Point(50, 240)
-        Label4.Name      = "Label4"
-        Label4.TabIndex  = 5
-        Label4.Text      = "Password"
+        ' ── Section: Password (y=428) ─────────────────────────────────────────
+        lblSectionPassword.AutoSize  = True
+        lblSectionPassword.Font      = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
+        lblSectionPassword.ForeColor = ColorTranslator.FromHtml("#4F46E5")
+        lblSectionPassword.Location  = New Point(50, 428)
+        lblSectionPassword.Name      = "lblSectionPassword"
+        lblSectionPassword.TabIndex  = 12
+        lblSectionPassword.Text      = "PASSWORD"
 
-        txtPassword.BorderStyle    = BorderStyle.FixedSingle
-        txtPassword.Font           = New Font("Segoe UI", 11.0F)
-        txtPassword.Location       = New Point(50, 260)
-        txtPassword.Name           = "txtPassword"
-        txtPassword.PasswordChar   = "●"c
+        ' Password (label y=450, input y=470)
+        lblPasswordLbl.AutoSize  = True
+        lblPasswordLbl.Font      = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
+        lblPasswordLbl.ForeColor = ColorTranslator.FromHtml("#374151")
+        lblPasswordLbl.Location  = New Point(50, 450)
+        lblPasswordLbl.Name      = "lblPasswordLbl"
+        lblPasswordLbl.TabIndex  = 13
+        lblPasswordLbl.Text      = "Password *  (min. 6 characters)"
+
+        txtPassword.BorderStyle     = BorderStyle.FixedSingle
+        txtPassword.Font            = New Font("Segoe UI", 11.0F)
+        txtPassword.Location        = New Point(50, 470)
+        txtPassword.Name            = "txtPassword"
+        txtPassword.PasswordChar    = "●"c
         txtPassword.PlaceholderText = "Min. 6 characters"
-        txtPassword.Size           = New Size(360, 36)
-        txtPassword.TabIndex       = 6
+        txtPassword.Size            = New Size(192, 36)
+        txtPassword.TabIndex        = 14
 
-        ' ── Row 4: Confirm Password  (label y=312, input y=332) ──────────────
-        Label5.AutoSize  = True
-        Label5.Font      = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
-        Label5.ForeColor = ColorTranslator.FromHtml("#374151")
-        Label5.Location  = New Point(50, 312)
-        Label5.Name      = "Label5"
-        Label5.TabIndex  = 7
-        Label5.Text      = "Confirm Password"
+        ' Confirm Password (same row, right half)
+        lblConfirmLbl.AutoSize  = True
+        lblConfirmLbl.Font      = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
+        lblConfirmLbl.ForeColor = ColorTranslator.FromHtml("#374151")
+        lblConfirmLbl.Location  = New Point(258, 450)
+        lblConfirmLbl.Name      = "lblConfirmLbl"
+        lblConfirmLbl.TabIndex  = 15
+        lblConfirmLbl.Text      = "Confirm Password *"
 
-        txtConfirmPassword.BorderStyle    = BorderStyle.FixedSingle
-        txtConfirmPassword.Font           = New Font("Segoe UI", 11.0F)
-        txtConfirmPassword.Location       = New Point(50, 332)
-        txtConfirmPassword.Name           = "txtConfirmPassword"
-        txtConfirmPassword.PasswordChar   = "●"c
-        txtConfirmPassword.PlaceholderText = "Repeat your password"
-        txtConfirmPassword.Size           = New Size(360, 36)
-        txtConfirmPassword.TabIndex       = 8
+        txtConfirmPassword.BorderStyle     = BorderStyle.FixedSingle
+        txtConfirmPassword.Font            = New Font("Segoe UI", 11.0F)
+        txtConfirmPassword.Location        = New Point(258, 470)
+        txtConfirmPassword.Name            = "txtConfirmPassword"
+        txtConfirmPassword.PasswordChar    = "●"c
+        txtConfirmPassword.PlaceholderText = "Repeat password"
+        txtConfirmPassword.Size            = New Size(192, 36)
+        txtConfirmPassword.TabIndex        = 16
 
-        ' ── Create Account button  (y=386) ────────────────────────────────────
+        ' ── Create Account button (y=526) ─────────────────────────────────────
         btnRegister.BackColor = ColorTranslator.FromHtml("#4F46E5")
         btnRegister.Cursor    = Cursors.Hand
         btnRegister.FlatAppearance.BorderSize = 0
@@ -195,13 +274,13 @@ Partial Class frmRegister
         btnRegister.FlatStyle = FlatStyle.Flat
         btnRegister.Font      = New Font("Segoe UI Semibold", 11.0F, FontStyle.Bold)
         btnRegister.ForeColor = Color.White
-        btnRegister.Location  = New Point(50, 386)
+        btnRegister.Location  = New Point(50, 526)
         btnRegister.Name      = "btnRegister"
-        btnRegister.Size      = New Size(360, 46)
-        btnRegister.TabIndex  = 9
-        btnRegister.Text      = "Create Account"
+        btnRegister.Size      = New Size(400, 46)
+        btnRegister.TabIndex  = 17
+        btnRegister.Text      = "🎓  Create Account"
 
-        ' ── Back to Login button  (y=444, centered) ───────────────────────────
+        ' ── Back to Login button (y=584) ──────────────────────────────────────
         btnCancel.BackColor = ColorTranslator.FromHtml("#EEF2FF")
         btnCancel.Cursor    = Cursors.Hand
         btnCancel.FlatAppearance.BorderSize = 0
@@ -209,21 +288,21 @@ Partial Class frmRegister
         btnCancel.FlatStyle = FlatStyle.Flat
         btnCancel.Font      = New Font("Segoe UI Semibold", 10.0F, FontStyle.Bold)
         btnCancel.ForeColor = ColorTranslator.FromHtml("#4F46E5")
-        btnCancel.Location  = New Point(130, 444)
+        btnCancel.Location  = New Point(150, 584)
         btnCancel.Name      = "btnCancel"
         btnCancel.Size      = New Size(200, 38)
-        btnCancel.TabIndex  = 10
+        btnCancel.TabIndex  = 18
         btnCancel.Text      = "← Back to Login"
 
         ' ── Form ─────────────────────────────────────────────────────────────
         AutoScaleDimensions = New SizeF(10.0F, 25.0F)
         AutoScaleMode       = AutoScaleMode.Font
         BackColor           = ColorTranslator.FromHtml("#F4F6FB")
-        ClientSize          = New Size(560, 620)
+        ClientSize          = New Size(560, 720)
         Controls.Add(pnlCenter)
         Controls.Add(pnlTitleBar)
         FormBorderStyle = FormBorderStyle.None
-        MinimumSize     = New Size(560, 620)
+        MinimumSize     = New Size(560, 720)
         Name            = "frmRegister"
         StartPosition   = FormStartPosition.CenterScreen
         WindowState     = FormWindowState.Maximized
@@ -241,15 +320,22 @@ Partial Class frmRegister
     Friend WithEvents lblTitle           As Label
     Friend WithEvents pnlCenter          As Panel
     Friend WithEvents pnlRegisterBox     As Panel
-    Friend WithEvents Label1             As Label
+    Friend WithEvents lblHeading         As Label
     Friend WithEvents lblSubtitle        As Label
-    Friend WithEvents Label2             As Label
+    Friend WithEvents lblSectionPersonal As Label
+    Friend WithEvents lblFullNameLbl     As Label
+    Friend WithEvents txtFullName        As TextBox
+    Friend WithEvents lblStudentIDLbl    As Label
+    Friend WithEvents txtStudentID       As TextBox
+    Friend WithEvents lblSectionAccount  As Label
+    Friend WithEvents lblUsernameLbl     As Label
     Friend WithEvents txtUsername        As TextBox
-    Friend WithEvents Label3             As Label
+    Friend WithEvents lblEmailLbl        As Label
     Friend WithEvents txtEmail           As TextBox
-    Friend WithEvents Label4             As Label
+    Friend WithEvents lblSectionPassword As Label
+    Friend WithEvents lblPasswordLbl     As Label
     Friend WithEvents txtPassword        As TextBox
-    Friend WithEvents Label5             As Label
+    Friend WithEvents lblConfirmLbl      As Label
     Friend WithEvents txtConfirmPassword As TextBox
     Friend WithEvents btnRegister        As Button
     Friend WithEvents btnCancel          As Button

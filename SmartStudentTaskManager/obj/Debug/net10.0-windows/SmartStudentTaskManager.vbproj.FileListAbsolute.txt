@@ -33,3 +33,9 @@ C:\Users\HP\source\repos\SmartStudentTaskManager\SmartStudentTaskManager\obj\Deb
 C:\Users\HP\source\repos\SmartStudentTaskManager\SmartStudentTaskManager\obj\Debug\net10.0-windows\SmartStudentTaskManager.pdb
 C:\Users\HP\source\repos\SmartStudentTaskManager\SmartStudentTaskManager\obj\Debug\net10.0-windows\SmartStudentTaskManager.genruntimeconfig.cache
 C:\Users\HP\source\repos\SmartStudentTaskManager\SmartStudentTaskManager\obj\Debug\net10.0-windows\ref\SmartStudentTaskManager.dll
+C:\Users\HP\source\repos\SmartStudentTaskManager\SmartStudentTaskManager\obj\Debug\net10.0-windows\SmartStudentTaskManager.frmAnalytics.resources
+C:\Users\HP\source\repos\SmartStudentTaskManager\SmartStudentTaskManager\obj\Debug\net10.0-windows\SmartStudentTaskManager.frmOCR.resources
+C:\Users\HP\source\repos\SmartStudentTaskManager\SmartStudentTaskManager\obj\Debug\net10.0-windows\SmartStudentTaskManager.frmPomodoro.resources
+C:\Users\HP\source\repos\SmartStudentTaskManager\SmartStudentTaskManager\obj\Debug\net10.0-windows\SmartStudentTaskManager.frmProfile.resources
+C:\Users\HP\source\repos\SmartStudentTaskManager\SmartStudentTaskManager\obj\Debug\net10.0-windows\SmartStudentTaskManager.frmShortcuts.resources
+C:\Users\HP\source\repos\SmartStudentTaskManager\SmartStudentTaskManager\obj\Debug\net10.0-windows\SmartStudentTaskManager.sourcelink.json
