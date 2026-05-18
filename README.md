@@ -1,6 +1,6 @@
 # Smart Student Task Manager
 
-A desktop productivity application built with **Visual Basic .NET (Windows Forms)** and **MySQL**. Designed for students to manage tasks, track deadlines, and stay productive — with an AI-style recommendation engine, Pomodoro timer, OCR support, and analytics dashboard.
+A desktop productivity application built with **Visual Basic .NET (Windows Forms)** and **MySQL**. Designed for students to manage tasks, track deadlines, and stay productive  with an AI-style recommendation engine, Pomodoro timer, OCR support, and analytics dashboard.
 
 ---
 
